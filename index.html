@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Меню</title>
-    <!-- Подключение шрифта Oswald -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,10 +11,9 @@
 </head>
 <body>
 
-    <!-- Фиксированная шапка сайта -->
     <header class="fixed-header">
         <div class="header-top">
-            <img src="logo.png" alt="Logo" class="logo">
+            <img src="src/logo.png" alt="Logo" class="logo">
             <h1 class="main-title">МЕНЮ</h1>
             <div class="lang-switch">
                 <span class="lang active">RU</span>
@@ -23,19 +21,45 @@
             </div>
         </div>
 
-        <!-- Навигация по категориям -->
         <nav class="categories-nav">
-            <a href="#kakao" class="nav-link">КАКАО</a>
-            <a href="#taro" class="nav-link">ТАРО</a>
-            <a href="#myata" class="nav-link">МЯТА</a>
-            <a href="#kofe" class="nav-link">КОФЕ</a>
-            <a href="#matcha" class="nav-link active">МАТЧА</a>
+            <a href="#kakao" class="nav-link" data-color="#764C18">КАКАО</a>
+            <a href="#taro" class="nav-link" data-color="#924AD6">ТАРО</a>
+            <a href="#myata" class="nav-link" data-color="#519672">МЯТА</a>
+            <a href="#kofe" class="nav-link" data-color="#A67F5B">КОФЕ</a>
+            <a href="#matcha" class="nav-link active" data-color="#3E751D">МАТЧА</a>
         </nav>
     </header>
 
     <!-- Основной контент страницы -->
     <main class="content">
-        <!-- Место для будущих блоков -->
+
+        <!-- СЕКЦИЯ МАТЧА -->
+        <section id="matcha" class="category-section">
+            <h2 class="category-title" style="color: #3E751D;">МАТЧА</h2>
+
+            <!-- Карточка напитка -->
+            <div class="drink-card">
+                <!-- Задний фон карточки -->
+                <img src="src/matcha1.png" alt="" class="card-bg">
+
+                <!-- Ингредиенты вокруг напитка -->
+                <div class="ingredients-container">
+                    <img src="src/1.png" alt="Ингредиент 1" class="ingredient ing-1">
+                    <img src="src/2.png" alt="Ингредиент 2" class="ingredient ing-2">
+                    <img src="src/3.png" alt="Ингредиент 3" class="ingredient ing-3">
+                </div>
+
+                <!-- Основное фото напитка -->
+                <img src="src/match1.png" alt="Матча Латте" class="drink-image">
+
+                <!-- Информация о напитке -->
+                <div class="drink-info">
+                    <h3 class="drink-name">МАТЧА ЛАТТЕ</h3>
+                    <p class="drink-price">24-30K</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <script src="script.js"></script>

@@ -8,12 +8,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Переключение активной категории в меню
+    // Функция подстветки активного пункта персональным цветом
     const navLinks = document.querySelectorAll('.nav-link');
+
+    function setActiveLink(activeLink) {
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            link.style.color = ''; // Возвращаем дефолтный цвет из CSS
+            link.style.borderColor = 'transparent';
+        });
+
+        activeLink.classList.add('active');
+        const color = activeLink.getAttribute('data-color');
+        activeLink.style.color = color;
+        activeLink.style.borderColor = color;
+    }
+
+    // Инициализация активной ссылки при загрузке страницы
+    const initialActive = document.querySelector('.nav-link.active');
+    if (initialActive) {
+        setActiveLink(initialActive);
+    }
+
+    // Обработка клика по категориям
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            navLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
+            setActiveLink(this);
         });
     });
 });
