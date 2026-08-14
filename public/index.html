@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>API Test</title></head>
+<body>
+  <h1 id="status">Проверяю API...</h1>
+  <pre id="output"></pre>
+  <script>
+    fetch('/api/venue?slug=test-cafe')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('status').textContent = 'API работает';
+        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(err => {
+        document.getElementById('status').textContent = 'Ошибка: ' + err.message;
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    background-image: url('src/fon.png');
+    background-size: 100% 100vh;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #1a3c22;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    z-index: 1000;
+    background-image: url('src/fon.png');
+    background-size: 100% 100vh;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    border-bottom: 2px solid rgba(26, 60, 34, 0.2);
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px 5px 15px;
+}
+
+.logo {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.main-title {
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #0b3d20;
+    text-transform: uppercase;
+}
+
+.lang-switch {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.lang {
+    color: #8a9a86;
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+.lang.active {
+    color: #000;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.categories-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 10px;
+    border-top: 1px solid #1a3c2233;
+    border-bottom: 1px solid rgba(26, 60, 34, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #0b3d20; /* Обычный цвет неактивных пунктов */
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 2px 4px;
+    transition: color 0.2s, border-color 0.2s;
+    border-bottom: 2px solid transparent;
+}
+
+.content {
+    padding-top: 130px; 
+    padding-bottom: 30px;
+}
+/* --- СЕКЦИЯ КАТЕГОРИИ --- */
+.category-section {
+    padding: 10px 15px 30px 15px;
+    text-align: center;
+}
+
+.category-title {
+    font-size: 34px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+/* --- КАРТОЧКА НАПИТКА --- */
+/* --- КАРТОЧКА НАПИТКА --- */
+.drink-card {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    border-radius: 0; /* Убрано скругление углов */
+    overflow: hidden;
+    padding: 20px 15px;
+    box-shadow: 0 4px 13px #1D4A33;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 440px;
+}
+
+/* Задний фон карточки (matcha1.png) */
+.card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    /* Тень со смещением по Y и размытием 13px */
+    filter: drop-shadow(0px 4px 13px #1D4A33); 
+}
+
+/* Основное фото напитка (match1.png) */
+.drink-image {
+    position: relative;
+    z-index: 3;
+    width: 85%;            /* Увеличили размер стакана */
+    max-width: 300px;      /* Увеличили максимальную ширину */
+    margin: 0 0 0 -10px;   /* Прижали к левому краю (можно подстроить отступ) */
+    display: block;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+}
+/* --- ИНГРЕДИЕНТЫ --- */
+.ingredients-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Между фоном и основным напитком */
+    pointer-events: none;
+}
+
+.ingredient {
+    position: absolute;
+    object-fit: contain;
+}
+
+/* Хаотичное позиционирование ингредиентов по образцу макета */
+.ing-1 {
+    top: 18%;
+    right: 18%;
+    width: 65px;
+}
+
+.ing-2 {
+    top: 38%;
+    right: 10%;
+    width: 75px;
+}
+
+.ing-3 {
+    bottom: 22%;
+    right: 15%;
+    width: 90px;
+}
+
+/* --- ТЕКСТ ВНИЗУ КАРТОЧКИ --- */
+.drink-info {
+    position: relative;
+    z-index: 4;
+    text-align: left;
+    margin-top: 10px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.drink-name {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+}
+
+.drink-price {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
