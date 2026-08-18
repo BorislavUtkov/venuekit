@@ -1,0 +1,119 @@
+{
+  "venue": {
+    "id": "c1d2e3f4-5a6b-7c8d-9e0f-1a2b3c4d5e6f",
+    "slug": "matcha-house",
+    "name": "Matcha House",
+    "ownerName": "Линь",
+    "ownerTitle": "Основательница кофейни",
+    "ownerPhotoUrl": "src/logo.png",
+    "audioUrl": null,
+    "audioDuration": null,
+    "audioBullets": [],
+    "gallery": [],
+    "address": "88 Nguyen Thien Thuat, Nha Trang",
+    "googleMapsUrl": null,
+    "promoCode": "MATCHA-2025",
+    "promoText": "Покажи это бариста",
+    "promoReward": "И получи скидку 10%"
+  },
+  "menu": {
+    "Матча": [
+      {
+        "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+        "name": "Матча Латте",
+        "priceVnd": 55000,
+        "description": "Японская матча, молоко, лёгкая сладость",
+        "photoUrl": "src/matcha_good.png",
+        "cardBgUrl": "src/matcha_background.png"
+      },
+      {
+        "id": "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e",
+        "name": "Матча Солёная карамель",
+        "priceVnd": 65000,
+        "description": "Матча, солёная карамель, молочная пена",
+        "photoUrl": "src/matcha_good.png",
+        "cardBgUrl": "src/matcha_background.png"
+      }
+    ],
+    "Какао": [
+      {
+        "id": "c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f",
+        "name": "Какао с солёной шапкой",
+        "priceVnd": 50000,
+        "description": "Горячее какао, крем-чиз, морская соль",
+        "photoUrl": "src/matcha_good.png",
+        "cardBgUrl": "src/matcha_background.png"
+      },
+      {
+        "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a",
+        "name": "Какао с нестле молоком",
+        "priceVnd": 45000,
+        "description": "Классика с молоком Nestle, мягкий вкус",
+        "photoUrl": "src/matcha_good.png",
+        "cardBgUrl": "src/matcha_background.png"
+      }
+    ],
+    "Таро": [
+      {
+        "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b",
+        "name": "Таро Латте",
+        "priceVnd": 55000,
+        "description": "Таро-пюре, молоко, фиолетовая нежность",
+        "photoUrl": "src/matcha_good.png",
+        "cardBgUrl": "src/matcha_background.png"
+      },
+      {
+        "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c",
+        "name": "Таро с нестле молоком",
+        "priceVnd": 50000,
+        "description": "Таро с молоком Nestle, бархатная текстура",
+        "photoUrl": "src/matcha_good.png",
+        "cardBgUrl": "src/matcha_background.png"
+      }
+    ],
+    "Кофе": [
+      {
+        "id": "a7b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d",
+        "name": "Эспрессо",
+        "priceVnd": 40000,
+        "description": "Классический эспрессо, 100% арабика",
+        "photoUrl": "src/matcha_good.png",
+        "cardBgUrl": "src/matcha_background.png"
+      },
+      {
+        "id": "b8c9d0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e",
+        "name": "Кофе с солёной шапкой",
+        "priceVnd": 60000,
+        "description": "Чёрный кофе, крем-чиз, соль",
+        "photoUrl": "src/matcha_good.png",
+        "cardBgUrl": "src/matcha_background.png"
+      },
+      {
+        "id": "c9d0e1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f",
+        "name": "Кофе с нестле молоком",
+        "priceVnd": 45000,
+        "description": "Мягкий кофе с молоком Nestle",
+        "photoUrl": "src/matcha_good.png",
+        "cardBgUrl": "src/matcha_background.png"
+      }
+    ],
+    "Мята": [
+      {
+        "id": "d0e1f2a3-b4c5-4d6e-7f8a-9b0c1d2e3f4a",
+        "name": "Мята Латте",
+        "priceVnd": 50000,
+        "description": "Свежая мята, молоко, прохлада",
+        "photoUrl": "src/matcha_good.png",
+        "cardBgUrl": "src/matcha_background.png"
+      },
+      {
+        "id": "e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b",
+        "name": "Мята с солёной шапкой",
+        "priceVnd": 55000,
+        "description": "Мятный напиток с крем-чизом и солью",
+        "photoUrl": "src/matcha_good.png",
+        "cardBgUrl": "src/matcha_background.png"
+      }
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-const GetFromBack = true; // true — бэкенд, false — локальный menu.json
+const GetFromBack = false; // true — бэкенд, false — локальный menu.json
 
 document.addEventListener('DOMContentLoaded', () => {
     const menuContainer = document.getElementById('menu-container');
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             items.forEach(item => {
                 html += `
                     <div class="drink-card">
-                        ${item.photoUrl ? `<img src="${item.photoUrl}" alt="" class="card-bg">` : ''}
+                        ${item.cardBgUrl ? `<img src="${item.cardBgUrl}" alt="" class="card-bg">` : ''}
                         ${item.photoUrl ? `<img src="${item.photoUrl}" alt="${item.name}" class="drink-image">` : ''}
                         <div class="drink-info">
                             <h3 class="drink-name">${item.name.toUpperCase()}</h3>

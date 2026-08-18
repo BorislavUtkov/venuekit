@@ -1,19 +1,36 @@
 <!DOCTYPE html>
-<html>
-<head><title>API Test</title></head>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Меню</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-  <h1 id="status">Проверяю API...</h1>
-  <pre id="output"></pre>
-  <script>
-    fetch('/api/venue?slug=test-cafe')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('status').textContent = 'API работает';
-        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
-      })
-      .catch(err => {
-        document.getElementById('status').textContent = 'Ошибка: ' + err.message;
-      });
-  </script>
+
+    <header class="fixed-header">
+        <div class="header-top">
+            <img src="src/logo.png" alt="Logo" class="logo">
+            <h1 class="main-title">МЕНЮ</h1>
+            <div class="lang-switch">
+                <span class="lang active">RU</span>
+                <span class="lang">EN</span>
+            </div>
+        </div>
+
+        <nav class="categories-nav">
+            <!-- Навигация будет отрисована из JSON -->
+        </nav>
+    </header>
+
+    <!-- Основной контент страницы -->
+    <main class="content" id="menu-container">
+        <!-- Секции с напитками будут отрисованы из JSON -->
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
