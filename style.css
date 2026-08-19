@@ -84,7 +84,7 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: #0b3d20; /* Обычный цвет неактивных пунктов */
+    color: #0b3d20;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -98,7 +98,7 @@ body {
     padding-top: 130px; 
     padding-bottom: 30px;
 }
-/* --- СЕКЦИЯ КАТЕГОРИИ --- */
+
 .category-section {
     padding: 10px 15px 30px 15px;
     text-align: center;
@@ -112,24 +112,44 @@ body {
     letter-spacing: 1px;
 }
 
-/* --- КАРТОЧКА НАПИТКА --- */
-/* --- КАРТОЧКА НАПИТКА --- */
-.drink-card {
+.carousel-container {
     position: relative;
     width: 100%;
     max-width: 380px;
     margin: 0 auto;
-    border-radius: 0; /* Убрано скругление углов */
+}
+
+.carousel-slides {
+    width: 100%;
+    position: relative;
+    min-height: 480px;
+}
+
+.drink-card {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    border-radius: 0;
     overflow: hidden;
     padding: 20px 15px;
     box-shadow: 0 4px 13px #1D4A33;
-    display: flex;
     flex-direction: column;
     justify-content: flex-end;
     min-height: 440px;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
 }
 
-/* Задний фон карточки (matcha1.png) */
+.drink-card.active {
+    display: flex;
+    position: relative;
+    opacity: 1;
+}
+
 .card-bg {
     position: absolute;
     top: 0;
@@ -138,56 +158,53 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    /* Тень со смещением по Y и размытием 13px */
     filter: drop-shadow(0px 4px 13px #1D4A33); 
 }
 
-/* Основное фото напитка (match1.png) */
 .drink-image {
     position: relative;
     z-index: 3;
-    width: 85%;            /* Увеличили размер стакана */
-    max-width: 300px;      /* Увеличили максимальную ширину */
-    margin: 0 0 0 -40px;   /* Прижали к левому краю (можно подстроить отступ) */
+    width: 85%;
+    max-width: 300px;
+    margin: 0 0 0 -40px;
     display: block;
     filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
 }
-/* --- ИНГРЕДИЕНТЫ --- */
+
 .ingredients-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 2; /* Между фоном и основным напитком */
+    z-index: 2;
     pointer-events: none;
 }
 
+/* Базовый класс для всех ингредиентов */
 .ingredient {
     position: absolute;
     object-fit: contain;
+    transform: scale(1.35);
+    transition: transform 0.3s ease;
 }
 
-/* Хаотичное позиционирование ингредиентов по образцу макета */
-.ing-1 {
-    top: 18%;
-    right: 18%;
-    width: 65px;
-}
+/* --- Настройки для Слайда 1 (matcha_latte) --- */
+#ing-matcha_latte-1 { top: 12%; right: 20%; width: 75px; }
+#ing-matcha_latte-2 { top: 45%; right: 22%; width: 65px; }
+#ing-matcha_latte-3 { top: 28%; right: 8%; width: 85px; }
 
-.ing-2 {
-    top: 38%;
-    right: 10%;
-    width: 75px;
-}
+/* --- Настройки для Слайда 2 (matcha_salted) --- */
+#ing-matcha_salted-1 { top: 12%; right: 20%; width: 75px; }
+#ing-matcha_salted-2 { top: 45%; right: 22%; width: 65px; }
+#ing-matcha_salted-3 { top: 28%; right: 8%; width: 85px; }
+#ing-matcha_salted-4 { bottom: 12%; right: 12%; width: 95px; }
 
-.ing-3 {
-    bottom: 22%;
-    right: 15%;
-    width: 90px;
-}
+/* --- Настройки для Слайда 3 (matcha_egg) --- */
+#ing-matcha_egg-1 { top: 12%; right: 20%; width: 75px; }
+#ing-matcha_egg-2 { top: 45%; right: 22%; width: 65px; }
+#ing-matcha_egg-3 { top: 28%; right: 8%; width: 85px; }
 
-/* --- ТЕКСТ ВНИЗУ КАРТОЧКИ --- */
 .drink-info {
     position: relative;
     z-index: 4;
@@ -197,21 +214,51 @@ body {
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.drink-name {
-    font-size: 26px;
-    font-weight: 500;
-    line-height: 1.1;
+.drink-name,
+.drink-price {
+    font-family: 'Philosopher', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.2;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .drink-price {
-    font-size: 28px;
-    font-weight: 700;
     margin-top: 4px;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 38px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.85;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-btn:hover {
+    background: transparent;
+    opacity: 1;
+    transform: translateY(-50%) scale(1.15);
+}
+
+.carousel-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
 }

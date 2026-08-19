@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Функция подстветки активного пункта персональным цветом
+    // Функция подсветки активного пункта персональным цветом
     const navLinks = document.querySelectorAll('.nav-link');
 
     function setActiveLink(activeLink) {
@@ -35,5 +35,32 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', function(e) {
             setActiveLink(this);
         });
+    });
+
+    // ИНИЦИАЛИЗАЦИЯ БЕСКОНЕЧНОЙ КАРУСЕЛИ ПО КРУГУ
+    const slides = document.querySelectorAll('.carousel-slides .drink-card');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                slide.classList.add('active');
+            }
+        });
+    }
+
+    // Листание вперед (по кругу)
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    });
+
+    // Листание назад (по кругу)
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
     });
 });

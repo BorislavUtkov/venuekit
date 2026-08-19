@@ -6,7 +6,7 @@
     <title>Меню</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,36 +30,92 @@
         </nav>
     </header>
 
-    <!-- Основной контент страницы -->
     <main class="content">
-
-        <!-- СЕКЦИЯ МАТЧА -->
         <section id="matcha" class="category-section">
             <h2 class="category-title" style="color: #3E751D;">МАТЧА</h2>
 
-            <!-- Карточка напитка -->
-            <div class="drink-card">
-                <!-- Задний фон карточки -->
-                <img src="src/matcha1.png" alt="" class="card-bg">
+            <div class="carousel-container">
+                <button class="carousel-btn prev-btn" aria-label="Назад">&#10092;</button>
 
-                <!-- Ингредиенты вокруг напитка -->
-                <div class="ingredients-container">
-                    <img src="src/1.png" alt="Ингредиент 1" class="ingredient ing-1">
-                    <img src="src/2.png" alt="Ингредиент 2" class="ingredient ing-2">
-                    <img src="src/3.png" alt="Ингредиент 3" class="ingredient ing-3">
+                <div class="carousel-slides">
+                    
+                    <!-- Слайд 1 -->
+                    <div class="drink-card active">
+                        <img src="src/matcha_latte_bg.png" alt="" class="card-bg">
+                        
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="Ингредиент 1" id="ing-matcha_latte-1" class="ingredient">
+                            <img src="src/milk_bottle.png" alt="Ингредиент 2" id="ing-matcha_latte-2" class="ingredient">
+                            <img src="src/matcha_pouder.png" alt="Ингредиент 3" id="ing-matcha_latte-3" class="ingredient">
+                        </div>
+
+                        <img src="src/matcha_latte.png" alt="Матча Латте" class="drink-image">
+
+                        <div class="drink-info">
+                            <h3 class="drink-name">МАТЧА ЛАТТЕ</h3>
+                            <p class="drink-price">24-30K</p>
+                        </div>
+                    </div>
+
+                    <!-- Слайд 2 -->
+                    <div class="drink-card">
+                        <img src="src/matcha_salted_bg.png" alt="" class="card-bg">
+
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="Ингредиент 1" id="ing-matcha_salted-1" class="ingredient">
+                            <img src="src/milk_bottle.png" alt="Ингредиент 2" id="ing-matcha_salted-2" class="ingredient">
+                            <img src="src/matcha_pouder.png" alt="Ингредиент 3" id="ing-matcha_salted-3" class="ingredient">
+                            <img src="src/salted_hat.png" alt="Ингредиент 4" id="ing-matcha_salted-4" class="ingredient">
+                        </div>
+
+                        <img src="src/matcha_salted.png" alt="Матча с соленым кремом" class="drink-image">
+
+                        <div class="drink-info">
+                            <h3 class="drink-name">МАТЧА С СОЛЕНЫМ КРЕМОМ</h3>
+                            <p class="drink-price">28K</p>
+                        </div>
+                    </div>
+
+                    <!-- Слайд 3 -->
+                    <div class="drink-card">
+                        <img src="src/matcha_egg_bg.png" alt="" class="card-bg">
+
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="Ингредиент 1" id="ing-matcha_egg-1" class="ingredient">
+                            <img src="src/milk_bottle.png" alt="Ингредиент 2" id="ing-matcha_egg-2" class="ingredient">
+                            <img src="src/matcha_pouder.png" alt="Ингредиент 3" id="ing-matcha_egg-3" class="ingredient">
+                        </div>
+
+                        <img src="src/matcha_egg.png" alt="МАТЧА С ЯИЧНЫМ КРЕМОМ" class="drink-image">
+
+                        <div class="drink-info">
+                            <h3 class="drink-name">Матча с яичным кремом</h3>
+                            <p class="drink-price">30K</p>
+                        </div>
+                    </div>
+                    <!-- Слайд 4  -->
+                    <div class="drink-card">
+                        <img src="src/matcha_nestle_bg.png" alt="" class="card-bg">
+                        
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="Ингредиент 1" id="ing-matcha_egg-1" class="ingredient">
+                            <img src="src/milk_nestle.png" alt="Ингредиент 2" id="ing-matcha_egg-2" class="ingredient">
+                            <img src="src/matcha_pouder.png" alt="Ингредиент 3" id="ing-matcha_egg-3" class="ingredient">
+                        </div>
+
+                        <img src="src/matcha_nestle.png" alt="МАТЧА С МОЛОКОМ НЕСТЛЕ" class="drink-image">
+
+                        <div class="drink-info">
+                            <h3 class="drink-name">МАТЧА С МОЛОКОМ НЕСТЛЕ</h3>
+                            <p class="drink-price">30K</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Основное фото напитка -->
-                <img src="src/match1.png" alt="Матча Латте" class="drink-image">
-
-                <!-- Информация о напитке -->
-                <div class="drink-info">
-                    <h3 class="drink-name">МАТЧА ЛАТТЕ</h3>
-                    <p class="drink-price">24-30K</p>
-                </div>
+                <button class="carousel-btn next-btn" aria-label="Вперед">&#10093;</button>
             </div>
+            
         </section>
-
     </main>
 
     <script src="script.js"></script>
