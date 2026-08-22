@@ -37,30 +37,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ИНИЦИАЛИЗАЦИЯ БЕСКОНЕЧНОЙ КАРУСЕЛИ ПО КРУГУ
-    const slides = document.querySelectorAll('.carousel-slides .drink-card');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    let currentIndex = 0;
+    // ИНИЦИАЛИЗАЦИЯ НЕЗАВИСИМЫХ КАРУСЕЛЕЙ ДЛЯ ВСЕХ РАЗДЕЛОВ
+    document.querySelectorAll('.carousel-container').forEach(container => {
+        const slides = container.querySelectorAll('.drink-card');
+        const prevBtn = container.querySelector('.prev-btn');
+        const nextBtn = container.querySelector('.next-btn');
+        let currentIndex = 0;
 
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.remove('active');
-            if (i === index) {
-                slide.classList.add('active');
-            }
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        // Листание вперед (по кругу)
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
         });
-    }
 
-    // Листание вперед (по кругу)
-    nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-    });
-
-    // Листание назад (по кругу)
-    prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        showSlide(currentIndex);
+        // Листание назад (по кругу)
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
+        });
     });
 });

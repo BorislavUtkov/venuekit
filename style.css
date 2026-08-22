@@ -4,19 +4,41 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 body {
     font-family: 'Oswald', sans-serif;
-    background-image: url('src/fon.png');
-    background-size: 100% 100vh;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     color: #1a3c22;
     max-width: 480px;
     margin: 0 auto;
     min-height: 100vh;
+    position: relative;
+    background-color: #f7f4ee; /* Цвет подложки на случай медленной загрузки */
 }
 
+/* Фиксированный фон, который не растягивается и не зависит от багов мобильных браузеров */
+.site-background {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    background-image: url('src/fon.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: -1; /* Отправляем картинку на самый задний план за весь контент */
+}
+
+/* Если вы хотите оставить фиксированный фон на ПК, но отключить на телефонах, можно использовать медиазапрос: */
+@media (min-width: 768px) {
+    body {
+        background-attachment: fixed;
+    }
+}
 .fixed-header {
     position: fixed;
     top: 0;
@@ -25,11 +47,8 @@ body {
     width: 100%;
     max-width: 480px;
     z-index: 1000;
-    background-image: url('src/fon.png');
-    background-size: 100% 100vh;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* Убираем фон из шапки, так как он теперь задан в body и шапка будет прозрачной */
+    background-color: rgba(255, 255, 255, 0.85); /* Добавим легкий фон шапке, чтобы текст меню читался */
     border-bottom: 2px solid rgba(26, 60, 34, 0.2);
 }
 
@@ -96,11 +115,13 @@ body {
 
 .content {
     padding-top: 130px; 
-    padding-bottom: 30px;
+    padding-bottom: 50px;
 }
 
+/* ОБНОВЛЕННЫЕ СТИЛИ СЕКЦИЙ */
 .category-section {
-    padding: 10px 15px 30px 15px;
+    scroll-margin-top: 140px; /* Спасает от обрезания заголовка шапкой */
+    padding: 30px 15px 150px 15px; /* Увеличили нижний отступ до 150px, чтобы не видеть следующий раздел */
     text-align: center;
 }
 
@@ -139,7 +160,7 @@ body {
     box-shadow: 0 4px 13px #1D4A33;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 440px;
+    min-height: 500px;
     opacity: 0;
     transition: opacity 0.4s ease-in-out;
 }
@@ -181,29 +202,12 @@ body {
     pointer-events: none;
 }
 
-/* Базовый класс для всех ингредиентов */
 .ingredient {
     position: absolute;
     object-fit: contain;
     transform: scale(1.35);
     transition: transform 0.3s ease;
 }
-
-/* --- Настройки для Слайда 1 (matcha_latte) --- */
-#ing-matcha_latte-1 { top: 12%; right: 20%; width: 75px; }
-#ing-matcha_latte-2 { top: 45%; right: 22%; width: 65px; }
-#ing-matcha_latte-3 { top: 28%; right: 8%; width: 85px; }
-
-/* --- Настройки для Слайда 2 (matcha_salted) --- */
-#ing-matcha_salted-1 { top: 12%; right: 20%; width: 75px; }
-#ing-matcha_salted-2 { top: 45%; right: 22%; width: 65px; }
-#ing-matcha_salted-3 { top: 28%; right: 8%; width: 85px; }
-#ing-matcha_salted-4 { bottom: 12%; right: 12%; width: 95px; }
-
-/* --- Настройки для Слайда 3 (matcha_egg) --- */
-#ing-matcha_egg-1 { top: 12%; right: 20%; width: 75px; }
-#ing-matcha_egg-2 { top: 45%; right: 22%; width: 65px; }
-#ing-matcha_egg-3 { top: 28%; right: 8%; width: 85px; }
 
 .drink-info {
     position: relative;
@@ -262,3 +266,18 @@ body {
 .next-btn {
     right: 10px;
 }
+/*Стили для ингредиентов базовые*/
+/*Начинается с "." значит Class. Class - может быть 1 для многих */
+/*Начинается с "#" значит Id. Id - может быть 1 для 1 */
+
+.ing-basic-1 { top: 12%; right: 20%; width: 75px; }
+.ing-basic-2 { top: 45%; right: 22%; width: 65px; }
+.ing-basic-3 { top: 28%; right: 8%; width: 85px; }
+
+.ing-milk { top: 20%; right: 2%; width: 100px; }
+.ing-ice { top: 40%; right: 30%; width: 55px; }
+.ing-matcha_pouder { top: 55%; right: 15%; width: 85px; }
+.ing-salted_hat  { top: 11%; right: 23%; width: 65px; }
+.ing-egg_cream  { top: 11%; right: 23%; width: 65px; }
+.ing-cacao_beam  { top: 55%; right: 15%; width: 70px; }
+.ing-milk_nestle { top: 20%; right: 5%; width: 100px; height: 100px;}
