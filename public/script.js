@@ -1,5 +1,5 @@
 const MEDIA_BASE = 'https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU/';
-const API_BASE = 'http://localhost:3001';
+const API_BASE = '';
 const DEFAULT_SLUG = 'REU_Coffee';
 
 const categoryColors = {
