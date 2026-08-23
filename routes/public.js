@@ -33,6 +33,27 @@ router.get('/venue', async (req, res) => {
       return res.status(500).json({ error: 'Failed to fetch menu' });
     }
 
+    const { data: ingredients, error: ingredientsError } = await supabasePublic
+      .from('menu_item_ingredients')
+      .select('*')
+      .in('menu_item_id', menuItems.map(item => item.id))
+      .order('sort_order');
+
+    if (ingredientsError) {
+      return res.status(500).json({ error: 'Failed to fetch ingredients' });
+    }
+
+    const ingredientsMap = {};
+    ingredients.forEach(ing => {
+      if (!ingredientsMap[ing.menu_item_id]) {
+        ingredientsMap[ing.menu_item_id] = [];
+      }
+      ingredientsMap[ing.menu_item_id].push({
+        imageUrl: ing.image_url,
+        cssClass: ing.css_class,
+      });
+    });
+
     const groupedMenu = {};
     menuItems.forEach(item => {
       const cat = item.category || 'Без категории';
@@ -43,6 +64,8 @@ router.get('/venue', async (req, res) => {
         priceVnd: item.price_vnd,
         description: item.description,
         photoUrl: item.photo_url,
+        cardBgUrl: item.card_bg_url,
+        ingredients: ingredientsMap[item.id] || [],
       });
     });
 
