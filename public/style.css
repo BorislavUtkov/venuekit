@@ -4,19 +4,41 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 body {
     font-family: 'Oswald', sans-serif;
-    background-image: url('src/fon.png');
-    background-size: 100% 100vh;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     color: #1a3c22;
     max-width: 480px;
     margin: 0 auto;
     min-height: 100vh;
+    position: relative;
+    background-color: #f7f4ee; /* Цвет подложки на случай медленной загрузки */
 }
 
+/* Фиксированный фон, который не растягивается и не зависит от багов мобильных браузеров */
+.site-background {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    background-image: url('src/fon.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: -1; /* Отправляем картинку на самый задний план за весь контент */
+}
+
+/* Если вы хотите оставить фиксированный фон на ПК, но отключить на телефонах, можно использовать медиазапрос: */
+@media (min-width: 768px) {
+    body {
+        background-attachment: fixed;
+    }
+}
 .fixed-header {
     position: fixed;
     top: 0;
@@ -25,11 +47,8 @@ body {
     width: 100%;
     max-width: 480px;
     z-index: 1000;
-    background-image: url('src/fon.png');
-    background-size: 100% 100vh;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* Убираем фон из шапки, так как он теперь задан в body и шапка будет прозрачной */
+    background-color: rgba(255, 255, 255, 0.85); /* Добавим легкий фон шапке, чтобы текст меню читался */
     border-bottom: 2px solid rgba(26, 60, 34, 0.2);
 }
 
@@ -84,7 +103,7 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: #0b3d20; /* Обычный цвет неактивных пунктов */
+    color: #0b3d20;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -96,11 +115,13 @@ body {
 
 .content {
     padding-top: 130px; 
-    padding-bottom: 30px;
+    padding-bottom: 50px;
 }
-/* --- СЕКЦИЯ КАТЕГОРИИ --- */
+
+/* ОБНОВЛЕННЫЕ СТИЛИ СЕКЦИЙ */
 .category-section {
-    padding: 10px 15px 30px 15px;
+    scroll-margin-top: 140px; /* Спасает от обрезания заголовка шапкой */
+    padding: 30px 15px 150px 15px; /* Увеличили нижний отступ до 150px, чтобы не видеть следующий раздел */
     text-align: center;
 }
 
@@ -112,24 +133,44 @@ body {
     letter-spacing: 1px;
 }
 
-/* --- КАРТОЧКА НАПИТКА --- */
-/* --- КАРТОЧКА НАПИТКА --- */
-.drink-card {
+.carousel-container {
     position: relative;
     width: 100%;
     max-width: 380px;
     margin: 0 auto;
-    border-radius: 0; /* Убрано скругление углов */
+}
+
+.carousel-slides {
+    width: 100%;
+    position: relative;
+    min-height: 480px;
+}
+
+.drink-card {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    border-radius: 0;
     overflow: hidden;
     padding: 20px 15px;
     box-shadow: 0 4px 13px #1D4A33;
-    display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 440px;
+    min-height: 500px;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
 }
 
-/* Задний фон карточки (matcha1.png) */
+.drink-card.active {
+    display: flex;
+    position: relative;
+    opacity: 1;
+}
+
 .card-bg {
     position: absolute;
     top: 0;
@@ -138,56 +179,36 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    /* Тень со смещением по Y и размытием 13px */
     filter: drop-shadow(0px 4px 13px #1D4A33); 
 }
 
-/* Основное фото напитка (match1.png) */
 .drink-image {
     position: relative;
     z-index: 3;
-    width: 85%;            /* Увеличили размер стакана */
-    max-width: 300px;      /* Увеличили максимальную ширину */
-    margin: 0 0 0 -10px;   /* Прижали к левому краю (можно подстроить отступ) */
+    width: 85%;
+    max-width: 300px;
+    margin: 0 0 0 -40px;
     display: block;
     filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
 }
-/* --- ИНГРЕДИЕНТЫ --- */
+
 .ingredients-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 2; /* Между фоном и основным напитком */
+    z-index: 2;
     pointer-events: none;
 }
 
 .ingredient {
     position: absolute;
     object-fit: contain;
+    transform: scale(1.35);
+    transition: transform 0.3s ease;
 }
 
-/* Хаотичное позиционирование ингредиентов по образцу макета */
-.ing-1 {
-    top: 18%;
-    right: 18%;
-    width: 65px;
-}
-
-.ing-2 {
-    top: 38%;
-    right: 10%;
-    width: 75px;
-}
-
-.ing-3 {
-    bottom: 22%;
-    right: 15%;
-    width: 90px;
-}
-
-/* --- ТЕКСТ ВНИЗУ КАРТОЧКИ --- */
 .drink-info {
     position: relative;
     z-index: 4;
@@ -197,21 +218,66 @@ body {
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.drink-name {
-    font-size: 26px;
-    font-weight: 500;
-    line-height: 1.1;
+.drink-name,
+.drink-price {
+    font-family: 'Philosopher', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.2;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .drink-price {
-    font-size: 28px;
-    font-weight: 700;
     margin-top: 4px;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 38px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.85;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
+
+.carousel-btn:hover {
+    background: transparent;
+    opacity: 1;
+    transform: translateY(-50%) scale(1.15);
+}
+
+.carousel-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+/*Стили для ингредиентов базовые*/
+/*Начинается с "." значит Class. Class - может быть 1 для многих */
+/*Начинается с "#" значит Id. Id - может быть 1 для 1 */
+
+.ing-basic-1 { top: 12%; right: 20%; width: 75px; }
+.ing-basic-2 { top: 45%; right: 22%; width: 65px; }
+.ing-basic-3 { top: 28%; right: 8%; width: 85px; }
+
+.ing-milk { top: 20%; right: 2%; width: 100px; }
+.ing-ice { top: 40%; right: 30%; width: 55px; }
+.ing-matcha_pouder { top: 55%; right: 15%; width: 85px; }
+.ing-salted_hat  { top: 11%; right: 23%; width: 65px; }
+.ing-egg_cream  { top: 11%; right: 23%; width: 65px; }
+.ing-cacao_beam  { top: 55%; right: 15%; width: 70px; }
+.ing-milk_nestle { top: 20%; right: 5%; width: 100px; height: 100px;}

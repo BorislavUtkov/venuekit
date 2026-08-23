@@ -1,11 +1,12 @@
-const GetFromBack = false; // true — бэкенд, false — локальный menu.json
+const MEDIA_BASE = 'https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU/';
+
+// Подстановка пути к изображениям
+document.querySelectorAll('img[data-src]').forEach(img => {
+    img.src = MEDIA_BASE + img.getAttribute('data-src');
+});
 
 document.addEventListener('DOMContentLoaded', () => {
-    const menuContainer = document.getElementById('menu-container');
-
-    // =============================================
-    // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКОВ
-    // =============================================
+    // Переключение языков
     const langSwitchers = document.querySelectorAll('.lang');
     langSwitchers.forEach(lang => {
         lang.addEventListener('click', () => {
@@ -14,9 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // =============================================
-    // ПОДСВЕТКА АКТИВНОГО ПУНКТА ПЕРСОНАЛЬНЫМ ЦВЕТОМ
-    // =============================================
+    // Функция подсветки активного пункта персональным цветом
     const navLinks = document.querySelectorAll('.nav-link');
 
     function setActiveLink(activeLink) {
@@ -32,140 +31,46 @@ document.addEventListener('DOMContentLoaded', () => {
         activeLink.style.borderColor = color;
     }
 
-    // =============================================
-    // ЗАГРУЗКА ДАННЫХ
-    // =============================================
-    if (GetFromBack) {
-        loadFromBackend();
-    } else {
-        loadFromLocalJson();
+    // Инициализация активной ссылки при загрузке страницы
+    const initialActive = document.querySelector('.nav-link.active');
+    if (initialActive) {
+        setActiveLink(initialActive);
     }
 
-    /**
-     * Получение данных с бэкенда
-     */
-    async function loadFromBackend() {
-        const slug = new URLSearchParams(window.location.search).get('slug') || 'matcha-house';
-        try {
-            const res = await fetch(`/api/venue?slug=${encodeURIComponent(slug)}`);
-            const data = await res.json();
+    // Обработка клика по категориям
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            setActiveLink(this);
+        });
+    });
 
-            if (!res.ok) {
-                menuContainer.innerHTML = `<p style="text-align:center;padding:40px;">Ошибка загрузки меню</p>`;
-                return;
-            }
+    // Инициализация независимых каруселей
+    document.querySelectorAll('.carousel-container').forEach(container => {
+        const slides = container.querySelectorAll('.drink-card');
+        const prevBtn = container.querySelector('.prev-btn');
+        const nextBtn = container.querySelector('.next-btn');
+        let currentIndex = 0;
 
-            renderNav(data.menu);
-            renderSections(data.menu);
-        } catch (err) {
-            menuContainer.innerHTML = `<p style="text-align:center;padding:40px;">Ошибка соединения с сервером</p>`;
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
         }
-    }
 
-    /**
-     * Получение данных из локального JSON (для тестирования)
-     */
-    async function loadFromLocalJson() {
-        try {
-            const res = await fetch('menu.json');
-            const data = await res.json();
-
-            if (!res.ok) {
-                menuContainer.innerHTML = `<p style="text-align:center;padding:40px;">Ошибка загрузки локального меню</p>`;
-                return;
-            }
-
-            renderNav(data.menu);
-            renderSections(data.menu);
-        } catch (err) {
-            menuContainer.innerHTML = `<p style="text-align:center;padding:40px;">Ошибка чтения локального JSON</p>`;
-        }
-    }
-
-    /**
-     * Отрисовка навигации по категориям
-     */
-    function renderNav(menu) {
-        const nav = document.querySelector('.categories-nav');
-        if (!nav) return;
-
-        nav.innerHTML = '';
-        Object.entries(menu).forEach(([category], index) => {
-            const link = document.createElement('a');
-            link.href = `#${transliterate(category)}`;
-            link.className = 'nav-link' + (index === 0 ? ' active' : '');
-            link.textContent = category.toUpperCase();
-            link.dataset.color = getCategoryColor(category);
-            nav.appendChild(link);
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
         });
 
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function () {
-                setActiveLink(this);
-            });
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
         });
+    });
 
-        const first = document.querySelector('.nav-link.active');
-        if (first) setActiveLink(first);
-    }
-
-    /**
-     * Отрисовка секций и карточек напитков
-     */
-    function renderSections(menu) {
-        if (!menuContainer) return;
-
-        let html = '';
-        for (const [category, items] of Object.entries(menu)) {
-            const sectionId = transliterate(category);
-            const titleColor = getCategoryColor(category);
-            html += `<section id="${sectionId}" class="category-section">`;
-            html += `<h2 class="category-title" style="color: ${titleColor};">${category.toUpperCase()}</h2>`;
-
-            items.forEach(item => {
-                html += `
-                    <div class="drink-card">
-                        ${item.cardBgUrl ? `<img src="${item.cardBgUrl}" alt="" class="card-bg">` : ''}
-                        ${item.photoUrl ? `<img src="${item.photoUrl}" alt="${item.name}" class="drink-image">` : ''}
-                        <div class="drink-info">
-                            <h3 class="drink-name">${item.name.toUpperCase()}</h3>
-                            <p class="drink-price">${(item.priceVnd / 1000).toFixed(0)}K</p>
-                        </div>
-                    </div>
-                `;
-            });
-
-            html += `</section>`;
-        }
-
-        menuContainer.innerHTML = html;
-    }
-
-    // =============================================
-    // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
-    // =============================================
-
-    function transliterate(text) {
-        const map = {
-            'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',
-            'е': 'e', 'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y',
-            'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o',
-            'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
-            'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh',
-            'щ': 'sch', 'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e',
-            'ю': 'yu', 'я': 'ya'
-        };
-        return text.toLowerCase().split('').map(ch => map[ch] || ch).join('').replace(/\s+/g, '-');
-    }
-
-    function getCategoryColor(category) {
-        const colors = {
-            'Матча': '#3E751D',
-            'Какао': '#764C18',
-            'Таро': '#924AD6',
-            'Мята': '#519672',
-            'Кофе': '#A67F5B'
-        };
-        return colors[category] || '#3E751D';
-    }
+    // Плавный скролл
+    document.documentElement.style.scrollBehavior = 'smooth';
 });
