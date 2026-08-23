@@ -1,3 +1,10 @@
+const MEDIA_BASE = 'https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU/';
+
+// Подстановка пути к изображениям
+document.querySelectorAll('img[data-src]').forEach(img => {
+    img.src = MEDIA_BASE + img.getAttribute('data-src');
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // Переключение языков
     const langSwitchers = document.querySelectorAll('.lang');
@@ -14,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function setActiveLink(activeLink) {
         navLinks.forEach(link => {
             link.classList.remove('active');
-            link.style.color = ''; // Возвращаем дефолтный цвет из CSS
+            link.style.color = '';
             link.style.borderColor = 'transparent';
         });
 
@@ -37,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ИНИЦИАЛИЗАЦИЯ НЕЗАВИСИМЫХ КАРУСЕЛЕЙ ДЛЯ ВСЕХ РАЗДЕЛОВ
+    // Инициализация независимых каруселей
     document.querySelectorAll('.carousel-container').forEach(container => {
         const slides = container.querySelectorAll('.drink-card');
         const prevBtn = container.querySelector('.prev-btn');
@@ -53,16 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Листание вперед (по кругу)
         nextBtn.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % slides.length;
             showSlide(currentIndex);
         });
 
-        // Листание назад (по кругу)
         prevBtn.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + slides.length) % slides.length;
             showSlide(currentIndex);
         });
     });
+
+    // Плавный скролл
+    document.documentElement.style.scrollBehavior = 'smooth';
 });
