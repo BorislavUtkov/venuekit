@@ -26,7 +26,7 @@ body {
     width: 100%;
     max-width: 480px;
     height: 100vh;
-    background-image: url('src/fon.png');
+    background-image: url('https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU/fon.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
