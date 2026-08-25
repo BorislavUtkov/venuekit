@@ -168,16 +168,14 @@ async function loadMenu() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const langSwitchers = document.querySelectorAll('.lang');
-    langSwitchers.forEach(lang => {
-        lang.addEventListener('click', () => {
-            langSwitchers.forEach(l => l.classList.remove('active'));
-            lang.classList.add('active');
-        });
+const langSwitchers = document.querySelectorAll('.lang');
+langSwitchers.forEach(lang => {
+    lang.addEventListener('click', () => {
+        langSwitchers.forEach(l => l.classList.remove('active'));
+        lang.classList.add('active');
     });
-
-    document.documentElement.style.scrollBehavior = 'smooth';
-
-    loadMenu();
 });
+
+document.documentElement.style.scrollBehavior = 'smooth';
+
+loadMenu();
