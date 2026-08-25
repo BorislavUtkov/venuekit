@@ -2,12 +2,26 @@ const express = require('express');
 const router = express.Router();
 const { supabasePublic } = require('../supabaseClient');
 
-// GET /api/venue?slug=sergey-cafe
+// Простой кеш в памяти
+let cache = {
+  slug: null,
+  data: null,
+  timestamp: 0,
+};
+
+const CACHE_TTL = 30 * 1000; //!! 30 секунд
+
+// GET /api/venue?slug=___
 router.get('/venue', async (req, res) => {
   const { slug } = req.query;
 
   if (!slug) {
     return res.status(400).json({ error: 'slug is required' });
+  }
+
+  // Отдаём из кеша, если свежий
+  if (cache.slug === slug && cache.data && Date.now() - cache.timestamp < CACHE_TTL) {
+    return res.json(cache.data);
   }
 
   try {
@@ -69,7 +83,7 @@ router.get('/venue', async (req, res) => {
       });
     });
 
-    return res.json({
+    const responseData = {
       venue: {
         id: venue.id,
         slug: venue.slug,
@@ -88,7 +102,16 @@ router.get('/venue', async (req, res) => {
         promoReward: venue.promo_reward,
       },
       menu: groupedMenu,
-    });
+    };
+
+    // Сохраняем в кеш
+    cache = {
+      slug,
+      data: responseData,
+      timestamp: Date.now(),
+    };
+
+    return res.json(responseData);
   } catch (error) {
     console.error('GET /api/venue error:', error);
     return res.status(500).json({ error: 'Internal server error' });
