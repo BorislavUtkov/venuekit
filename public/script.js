@@ -1,14 +1,17 @@
 const MEDIA_BASE = 'https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU/';
-const API_BASE = '';
-const DEFAULT_SLUG = 'REU_Coffee';
+const API_BASE = 'http://localhost:3001';
+// const DEFAULT_SLUG = 'REU_Coffee';
 
-const categoryColors = {
-    'Какао': '#764C18',
-    'Таро': '#924AD6',
-    'Мята': '#519672',
-    'Кофе': '#A67F5B',
-    'Матча': '#3E751D'
-};
+function getCurrentSlug() {
+    return new URLSearchParams(window.location.search).get('slug') || DEFAULT_SLUG;
+}
+
+function loadVenueCss(slug) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `${slug}.css`;
+    document.head.appendChild(link);
+}
 
 function setImageSources(container = document) {
     container.querySelectorAll('img[data-src]').forEach(img => {
@@ -29,7 +32,6 @@ function buildNav(menu) {
         link.href = `#${category.toLowerCase()}`;
         link.className = 'nav-link' + (index === 0 ? ' active' : '');
         link.textContent = category.toUpperCase();
-        link.dataset.color = categoryColors[category] || '#3E751D';
         nav.appendChild(link);
     });
 
@@ -43,9 +45,6 @@ function buildNav(menu) {
         });
 
         activeLink.classList.add('active');
-        const color = activeLink.getAttribute('data-color');
-        activeLink.style.color = color;
-        activeLink.style.borderColor = color;
     }
 
     links.forEach(link => {
@@ -69,7 +68,6 @@ function buildSections(menu) {
 
         const title = document.createElement('h2');
         title.className = 'category-title';
-        title.style.color = categoryColors[category] || '#3E751D';
         title.textContent = category.toUpperCase();
 
         const carousel = document.createElement('div');
@@ -149,7 +147,9 @@ function initCarousels() {
 }
 
 async function loadMenu() {
-    const slug = new URLSearchParams(window.location.search).get('slug') || DEFAULT_SLUG;
+    const slug = getCurrentSlug();
+
+    loadVenueCss(slug);
 
     try {
         const res = await fetch(`${API_BASE}/api/venue?slug=${encodeURIComponent(slug)}`);

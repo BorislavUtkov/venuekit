@@ -1,0 +1,49 @@
+.site-background {
+    background-image: url('https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU/fon.png');
+}
+
+.main-title {
+    color: #0b3d20;
+}
+
+.lang {
+    color: #8a9a86;
+}
+
+.lang.active {
+    color: #000;
+}
+
+.nav-link {
+    color: #0b3d20;
+}
+
+.category-title {
+    color: #3E751D;
+}
+
+.drink-card {
+    box-shadow: 0 4px 13px #1D4A33;
+}
+
+.card-bg {
+    filter: drop-shadow(0px 4px 13px #1D4A33);
+}
+
+.drink-image {
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+}
+
+.drink-name,
+.drink-price {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.ing-milk { top: 20%; right: 2%; width: 100px; }
+.ing-ice { top: 40%; right: 30%; width: 55px; }
+.ing-matcha_pouder { top: 55%; right: 15%; width: 85px; }
+.ing-salted_hat { top: 11%; right: 23%; width: 65px; }
+.ing-egg_cream { top: 11%; right: 23%; width: 65px; }
+.ing-cacao_beam { top: 55%; right: 15%; width: 70px; }
+.ing-milk_nestle { top: 20%; right: 5%; width: 100px; height: 100px; }
