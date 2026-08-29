@@ -159,7 +159,11 @@ async function loadMenu() {
         }
 
         const data = await res.json();
-
+if (data.venue && data.venue.customCss) {
+    const style = document.createElement('style');
+    style.textContent = data.venue.customCss;
+    document.head.appendChild(style);
+}
         buildNav(data.menu);
         buildSections(data.menu);
     } catch (error) {

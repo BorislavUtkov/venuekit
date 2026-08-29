@@ -100,6 +100,8 @@ router.get('/venue', async (req, res) => {
         promoCode: venue.promo_code,
         promoText: venue.promo_text,
         promoReward: venue.promo_reward,
+        customCss: venue.custom_css,
+
       },
       menu: groupedMenu,
     };
