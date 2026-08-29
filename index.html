@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Меню</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Статичный фон для всего сайта -->
     <div class="site-background"></div>
@@ -38,81 +42,81 @@
 
     <main class="content">
         <!-- РАЗДЕЛ КАКАО -->
-<section id="kakao" class="category-section">
-    <h2 class="category-title" style="color: #764C18;">КАКАО</h2>
+        <section id="kakao" class="category-section">
+            <h2 class="category-title" style="color: #764C18;">КАКАО</h2>
 
-    <div class="carousel-container">
-        <button class="carousel-btn prev-btn" aria-label="Назад">&#10092;</button>
+            <div class="carousel-container">
+                <button class="carousel-btn prev-btn" aria-label="Назад">&#10092;</button>
 
-        <div class="carousel-slides">
-            
-            <!-- Слайд 1 -->
-            <div class="drink-card active">
-                <img src="src/chocolate_bg.png" alt="" class="card-bg">
-                <div class="ingredients-container">
-                    <img src="src/cacao_beam.png" alt="" class="ingredient ing-cacao_beam">
-                    <img src="src/ice_cube.png" alt="" class="ingredient ing-ice" >
-                    <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                <div class="carousel-slides">
+
+                    <!-- Слайд 1 -->
+                    <div class="drink-card active">
+                        <img src="src/chocolate_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/cacao_beam.png" alt="" class="ingredient ing-cacao_beam">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                        </div>
+                        <img src="src/chocolate_iced.png" alt="Какао 1" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">ШОКОЛАД ГОРЯЧИЙ/ХОЛОДНЫЙ</h3>
+                            <p class="drink-price">23K</p>
+                        </div>
+                    </div>
+
+                    <!-- Слайд 2 -->
+                    <div class="drink-card">
+                        <img src="src/cacao_salted_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/cacao_beam.png" alt="" class="ingredient ing-cacao_beam">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                            <img src="src/salted_cream.png" alt="" class="ingredient" id="ing-kakao2-4">
+                        </div>
+                        <img src="src/cacao_salted.png" alt="Какао 2" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">ШОКОЛАД С СОЛЕНЫМ КРЕМОМ</h3>
+                            <p class="drink-price">27K</p>
+                        </div>
+                    </div>
+
+                    <!-- Слайд 3 -->
+                    <div class="drink-card">
+                        <img src="src/cacao_egg_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/cacao_beam.png" alt="" class="ingredient ing-cacao_beam">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                            <img src="src/egg_cream.png" alt="" class="ingredient ing-egg_cream">
+                        </div>
+                        <img src="src/cacao_egg.png" alt="Какао 3" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">ШОКОЛАД С ЯИЧНЫМ КРЕМОМ</h3>
+                            <p class="drink-price">29K</p>
+                        </div>
+                    </div>
+
+                    <!-- Слайд 4 -->
+                    <div class="drink-card">
+                        <img src="src/cacao_nestle_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/cacao_beam.png" alt="" class="ingredient ing-cacao_beam">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_nestle.png" alt="" class="ingredient ing-milk_nestle">
+                        </div>
+                        <img src="src/cacao_nestle.png" alt="Какао 4" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">ШОКОЛАД С МОЛОКОМ НЕСТЛЕ</h3>
+                            <p class="drink-price">29K</p>
+                        </div>
+                    </div>
+
                 </div>
-                <img src="src/chocolate_iced.png" alt="Какао 1" class="drink-image">
-                <div class="drink-info">
-                    <h3 class="drink-name">ШОКОЛАД ГОРЯЧИЙ/ХОЛОДНЫЙ</h3>
-                    <p class="drink-price">23K</p>
-                </div>
+
+                <button class="carousel-btn next-btn" aria-label="Вперед">&#10093;</button>
             </div>
-
-            <!-- Слайд 2 -->
-            <div class="drink-card">
-                <img src="src/cacao_salted_bg.png" alt="" class="card-bg">
-                <div class="ingredients-container">
-                    <img src="src/cacao_beam.png" alt="" class="ingredient ing-cacao_beam">
-                    <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
-                    <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
-                    <img src="src/salted_cream.png" alt="" class="ingredient" id="ing-kakao2-4">
-                </div>
-                <img src="src/cacao_salted.png" alt="Какао 2" class="drink-image">
-                <div class="drink-info">
-                    <h3 class="drink-name">ШОКОЛАД С СОЛЕНЫМ КРЕМОМ</h3>
-                    <p class="drink-price">27K</p>
-                </div>
-            </div>
-
-            <!-- Слайд 3 -->
-            <div class="drink-card">
-                <img src="src/cacao_egg_bg.png" alt="" class="card-bg">
-                <div class="ingredients-container">
-                    <img src="src/cacao_beam.png" alt="" class="ingredient ing-cacao_beam">
-                    <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
-                    <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
-                    <img src="src/egg_cream.png" alt="" class="ingredient ing-egg_cream">
-                </div>
-                <img src="src/cacao_egg.png" alt="Какао 3" class="drink-image">
-                <div class="drink-info">
-                    <h3 class="drink-name">ШОКОЛАД С ЯИЧНЫМ КРЕМОМ</h3>
-                    <p class="drink-price">29K</p>
-                </div>
-            </div>
-
-            <!-- Слайд 4 -->
-            <div class="drink-card">
-                <img src="src/cacao_nestle_bg.png" alt="" class="card-bg">
-                <div class="ingredients-container">
-                    <img src="src/cacao_beam.png" alt="" class="ingredient ing-cacao_beam">
-                    <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
-                    <img src="src/milk_nestle.png" alt="" class="ingredient ing-milk_nestle">
-                </div>
-                <img src="src/cacao_nestle.png" alt="Какао 4" class="drink-image">
-                <div class="drink-info">
-                    <h3 class="drink-name">ШОКОЛАД С МОЛОКОМ НЕСТЛЕ</h3>
-                    <p class="drink-price">29K</p>
-                </div>
-            </div>
-
-        </div>
-
-        <button class="carousel-btn next-btn" aria-label="Вперед">&#10093;</button>
-    </div>
-</section>
+        </section>
 
         <!-- ТАРО (5) -->
         <section id="taro" class="category-section">
@@ -120,24 +124,85 @@
             <div class="carousel-container">
                 <button class="carousel-btn prev-btn">&#10092;</button>
                 <div class="carousel-slides">
+
+                    <!-- Карточка 1: Латте -->
                     <div class="drink-card active">
-                    <img src="src/matcha_latte_bg.png" alt="" class="card-bg">
+                        <img src="src/taro_latte_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
                             <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
-                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk" >
-                            <img src="src/matcha_pouder.png" alt="" class="ingredient ing-matcha_pouder">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                            <img src="src/taro_pouder.png" alt="" class="ingredient ing-taro_pouder">
                         </div>
-                        <img src="src/matcha_latte.png" alt="Матча Латте" class="drink-image">
+                        <img src="src/taro_latte.png" alt="Таро Латте" class="drink-image">
                         <div class="drink-info">
                             <h3 class="drink-name">ТАРО ЛАТТЕ </h3>
                             <p class="drink-price">23K</p>
-                        </div>  
-
+                        </div>
                     </div>
-                    <div class="drink-card"></div>
-                    <div class="drink-card"></div>
-                    <div class="drink-card"></div>
-                    <div class="drink-card"></div>
+
+                    <!-- Карточка 2: Соленый крем -->
+                    <div class="drink-card">
+                        <img src="src/taro_salted_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                            <img src="src/taro_pouder.png" alt="" class="ingredient ing-taro_pouder">
+                            <img src="src/salted_hat.png" alt="" class="ingredient ing-salted_hat">
+                        </div>
+                        <img src="src/taro_salted.png" alt="Таро Соленый" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">ТАРО С СОЛЕНЫМ КРЕМОМ </h3>
+                            <p class="drink-price">27K</p>
+                        </div>
+                    </div>
+
+                    <!-- Карточка 3: Яичный крем -->
+                    <div class="drink-card">
+                        <img src="src/taro_egg_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                            <img src="src/taro_pouder.png" alt="" class="ingredient ing-taro_pouder">
+                            <img src="src/egg_cream.png" alt="" class="ingredient ing-egg_cream">
+                        </div>
+                        <img src="src/taro_egg.png" alt="Таро Яичный" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">ТАРО С ЯИЧНЫМ КРЕМОМ </h3>
+                            <p class="drink-price">29K</p>
+                        </div>
+                    </div>
+
+                    <!-- Карточка 4: Нестле -->
+                    <div class="drink-card">
+                        <img src="src/taro_nestle_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_nestle.png" alt="" class="ingredient ing-milk_nestle">
+                            <img src="src/taro_pouder.png" alt="" class="ingredient ing-taro_pouder">
+                        </div>
+                        <img src="src/taro_nestle.png" alt="Таро Нестле" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">ТАРО С МОЛОКОМ НЕСТЛЕ </h3>
+                            <p class="drink-price">29K</p>
+                        </div>
+                    </div>
+
+
+                    <!-- Карточка 3: Яичный крем -->
+                    <div class="drink-card">
+                        <img src="src/taro_egg_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                            <img src="src/taro_pouder.png" alt="" class="ingredient ing-taro_pouder">
+                            <img src="src/matcha_powder.png" alt="" class="ingredient ing-matcha_powder">
+                        </div>
+                        <img src="src/taro_matcha_latte.png" alt="Таро Матча" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">ТАРО С МАТЧЕЙ </h3>
+                            <p class="drink-price">29K</p>
+                        </div>
+                    </div>
                 </div>
                 <button class="carousel-btn next-btn">&#10093;</button>
             </div>
@@ -149,10 +214,65 @@
             <div class="carousel-container">
                 <button class="carousel-btn prev-btn">&#10092;</button>
                 <div class="carousel-slides">
-                    <div class="drink-card active"></div>
-                    <div class="drink-card"></div>
-                    <div class="drink-card"></div>
-                    <div class="drink-card"></div>
+                    <div class="drink-card active">
+                        <img src="src/mint_latte_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                            <img src="src/mint_syrup.png" alt="" class="ingredient ing-mint_syrup">
+                        </div>
+                        <img src="src/mint_latte.png" alt="Мята Латте" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">МЯТА ЛАТТЕ </h3>
+                            <p class="drink-price">23K</p>
+                        </div>
+
+                    </div>
+                    <div class="drink-card">
+                        <img src="src/mint_salted_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                            <img src="src/salted_hat.png" alt="" class="ingredient ing-salted_hat">
+                            <img src="src/mint_syrup.png" alt="" class="ingredient ing-mint_syrup">
+                        </div>
+                        <img src="src/mint_salted.png" alt="Мята Соленый" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">МЯТА С СОЛЕНЫМ КРЕМОМ </h3>
+                            <p class="drink-price">27K</p>
+                        </div>
+
+                    </div>
+                    <div class="drink-card">
+                        <img src="src/mint_cacao_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                            <img src="src/cacao_bean.png" alt="" class="ingredient ing-cacao_bean">
+                            <img src="src/mint_syrup.png" alt="" class="ingredient ing-mint_syrup">
+                        </div>
+                        <img src="src/mint_cacao.png" alt="Мята Какао" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">МЯТА С КАКАО ЛАТТЕ </h3>
+                            <p class="drink-price">29K</p>
+                        </div>
+
+                    </div>
+                    <div class="drink-card">
+                        <img src="src/mint_coffee_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                            <img src="src/coffee_seed.png" alt="" class="ingredient ing-salted_hat">
+                            <img src="src/mint_syrup.png" alt="" class="ingredient ing-mint_syrup">
+                        </div>
+                        <img src="src/mint_coffee.png" alt="Мята Кофейный" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">МЯТА С КОФЕЙНЫМ ЛАТТЕ </h3>
+                            <p class="drink-price">29K</p>
+                        </div>
+
+                    </div>
                 </div>
                 <button class="carousel-btn next-btn">&#10093;</button>
             </div>
@@ -165,8 +285,33 @@
                 <button class="carousel-btn prev-btn">&#10092;</button>
                 <div class="carousel-slides">
                     <!-- Заполните 10 карточек -->
-                    <div class="drink-card active"></div>
-                    <div class="drink-card"></div>
+                    <div class="drink-card active">
+                        <img src="src/mint_latte_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                            <img src="src/mint_syrup.png" alt="" class="ingredient ing-mint_syrup">
+                        </div>
+                        <img src="src/mint_latte.png" alt="Мята Латте" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">МЯТА ЛАТТЕ </h3>
+                            <p class="drink-price">23K</p>
+                        </div>
+
+                    </div>
+                    <div class="drink-card">
+                        <img src="src/matcha_latte_bg.png" alt="" class="card-bg">
+                        <div class="ingredients-container">
+                            <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
+                            <img src="src/matcha_pouder.png" alt="" class="ingredient ing-matcha_pouder">
+                        </div>
+                        <img src="src/matcha_latte.png" alt="Матча Латте" class="drink-image">
+                        <div class="drink-info">
+                            <h3 class="drink-name">МАТЧА ЛАТТЕ </h3>
+                            <p class="drink-price">25K</p>
+                        </div>
+                    </div>
                     <div class="drink-card"></div>
                     <div class="drink-card"></div>
                     <div class="drink-card"></div>
@@ -190,7 +335,7 @@
                         <img src="src/matcha_latte_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
                             <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
-                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk" >
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
                             <img src="src/matcha_pouder.png" alt="" class="ingredient ing-matcha_pouder">
                         </div>
                         <img src="src/matcha_latte.png" alt="Матча Латте" class="drink-image">
@@ -218,7 +363,7 @@
                         <img src="src/matcha_egg_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
                             <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
-                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk" >
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
                             <img src="src/matcha_pouder.png" alt="" class="ingredient ing-matcha_pouder">
                             <img src="src/egg_cream.png" alt="" class="ingredient ing-egg_cream">
                         </div>
@@ -273,4 +418,5 @@
         });
     </script>
 </body>
+
 </html>
