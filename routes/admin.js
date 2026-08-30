@@ -57,7 +57,7 @@ router.patch('/venue', async (req, res) => {
 
 // POST /api/admin/menu-item
 router.post('/menu-item', async (req, res) => {
-  const { venue_id, category, name, price_vnd, description, photo_url, sort_order } = req.body;
+  const { venue_id, category, name, price_vnd, description, photo_url, card_bg_url, sort_order } = req.body;
 
   if (!venue_id || !name || price_vnd === undefined) {
     return res.status(400).json({ error: 'venue_id, name, and price_vnd are required' });
@@ -66,7 +66,7 @@ router.post('/menu-item', async (req, res) => {
   try {
     const { data, error } = await supabaseAdmin
       .from('menu_items')
-      .insert({ venue_id, category, name, price_vnd, description, photo_url,
+      .insert({ venue_id, category, name, price_vnd, description, photo_url, card_bg_url,
         is_available: true, sort_order: sort_order || 0 })
       .select()
       .single();
