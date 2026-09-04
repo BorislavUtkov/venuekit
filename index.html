@@ -7,9 +7,7 @@
     <title>Меню</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -18,32 +16,27 @@
     <div class="site-background"></div>
 
     <header class="fixed-header">
-        <!-- ваш код шапки -->
-    </header>
-    <!-- остальной контент -->
-    <header class="fixed-header">
         <div class="header-top">
             <img src="src/logo.png" alt="Logo" class="logo">
-            <h1 class="main-title">МЕНЮ</h1>
+            <h1 class="main-title" data-ru="МЕНЮ" data-en="MENU">МЕНЮ</h1>
             <div class="lang-switch">
-                <span class="lang active">RU</span>
-                <span class="lang">EN</span>
+                <span class="lang active" data-lang="ru">RU</span>
+                <span class="lang" data-lang="en">EN</span>
             </div>
         </div>
-
         <nav class="categories-nav">
-            <a href="#kakao" class="nav-link" data-color="#764C18">КАКАО</a>
-            <a href="#taro" class="nav-link" data-color="#924AD6">ТАРО</a>
-            <a href="#myata" class="nav-link" data-color="#519672">МЯТА</a>
-            <a href="#kofe" class="nav-link" data-color="#A67F5B">КОФЕ</a>
-            <a href="#matcha" class="nav-link active" data-color="#3E751D">МАТЧА</a>
+            <a href="#kakao" class="nav-link" data-color="#764C18" data-ru="КАКАО" data-en="COCOA">КАКАО</a>
+            <a href="#taro" class="nav-link" data-color="#924AD6" data-ru="ТАРО" data-en="TARO">ТАРО</a>
+            <a href="#myata" class="nav-link" data-color="#519672" data-ru="МЯТА" data-en="MINT">МЯТА</a>
+            <a href="#kofe" class="nav-link" data-color="#A67F5B" data-ru="КОФЕ" data-en="COFFEE">КОФЕ</a>
+            <a href="#matcha" class="nav-link active" data-color="#3E751D" data-ru="МАТЧА" data-en="MATCHA">МАТЧА</a>
         </nav>
     </header>
 
     <main class="content">
         <!-- РАЗДЕЛ КАКАО -->
         <section id="kakao" class="category-section">
-            <h2 class="category-title" style="color: #764C18;">КАКАО</h2>
+            <h2 class="category-title" style="color: #764C18;" data-ru="КАКАО" data-en="COCOA">КАКАО</h2>
 
             <div class="carousel-container">
                 <button class="carousel-btn prev-btn" aria-label="Назад">&#10092;</button>
@@ -60,7 +53,8 @@
                         </div>
                         <img src="src/chocolate_iced.png" alt="Какао 1" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">ШОКОЛАД ГОРЯЧИЙ/ХОЛОДНЫЙ</h3>
+                            <h3 class="drink-name" data-ru="ШОКОЛАД" data-en="CHOCOLATE">ШОКОЛАД</h3>
+                            <h3 class="drink-name" data-ru="ГОРЯЧИЙ/ХОЛОДНЫЙ" data-en="HOT/ICED">ГОРЯЧИЙ/ХОЛОДНЫЙ</h3>
                             <p class="drink-price">23K</p>
                         </div>
                     </div>
@@ -72,11 +66,12 @@
                             <img src="src/cacao_beam.png" alt="" class="ingredient ing-cacao_beam">
                             <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
                             <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
-                            <img src="src/salted_cream.png" alt="" class="ingredient" id="ing-kakao2-4">
+                            <img src="src/salted_hat.png" alt="" class="ingredient ing-salted_hat">
                         </div>
-                        <img src="src/cacao_salted.png" alt="Какао 2" class="drink-image">
+                        <img src="src/cacao_salted.png"  alt="Какао 2" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">ШОКОЛАД С СОЛЕНЫМ КРЕМОМ</h3>
+                            <h3 class="drink-name" data-ru="ШОКОЛАД" data-en="CHOCOLATE">ШОКОЛАД</h3>
+                            <h3 class="drink-name" data-ru="С СОЛЕНЫМ КРЕМОМ" data-en="WITH SALTED CREAM">С СОЛЕНЫМ КРЕМОМ</h3>
                             <p class="drink-price">27K</p>
                         </div>
                     </div>
@@ -92,7 +87,8 @@
                         </div>
                         <img src="src/cacao_egg.png" alt="Какао 3" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">ШОКОЛАД С ЯИЧНЫМ КРЕМОМ</h3>
+                            <h3 class="drink-name" data-ru="ШОКОЛАД" data-en="CHOCOLATE">ШОКОЛАД</h3>
+                            <h3 class="drink-name" data-ru="С ЯИЧНЫМ КРЕМОМ" data-en="WITH EGG CREAM">С ЯИЧНЫМ КРЕМОМ</h3>
                             <p class="drink-price">29K</p>
                         </div>
                     </div>
@@ -107,7 +103,8 @@
                         </div>
                         <img src="src/cacao_nestle.png" alt="Какао 4" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">ШОКОЛАД С МОЛОКОМ НЕСТЛЕ</h3>
+                            <h3 class="drink-name" data-ru="ШОКОЛАД" data-en="CHOCOLATE">ШОКОЛАД</h3>
+                            <h3 class="drink-name" data-ru="С МОЛОКОМ НЕСТЛЕ" data-en="WITH NESTLE MILK">С МОЛОКОМ НЕСТЛЕ</h3>
                             <p class="drink-price">29K</p>
                         </div>
                     </div>
@@ -118,9 +115,9 @@
             </div>
         </section>
 
-        <!-- ТАРО (5) -->
+        <!-- ТАРО -->
         <section id="taro" class="category-section">
-            <h2 class="category-title" style="color: #924AD6;">ТАРО</h2>
+            <h2 class="category-title" style="color: #924AD6;" data-ru="ТАРО" data-en="TARO">ТАРО</h2>
             <div class="carousel-container">
                 <button class="carousel-btn prev-btn">&#10092;</button>
                 <div class="carousel-slides">
@@ -135,7 +132,8 @@
                         </div>
                         <img src="src/taro_latte.png" alt="Таро Латте" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">ТАРО ЛАТТЕ </h3>
+                            <h3 class="drink-name" data-ru="ТАРО" data-en="TARO">ТАРО</h3>
+                            <h3 class="drink-name" data-ru="ЛАТТЕ" data-en="LATTE">ЛАТТЕ</h3>
                             <p class="drink-price">23K</p>
                         </div>
                     </div>
@@ -151,7 +149,8 @@
                         </div>
                         <img src="src/taro_salted.png" alt="Таро Соленый" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">ТАРО С СОЛЕНЫМ КРЕМОМ </h3>
+                            <h3 class="drink-name" data-ru="ТАРО" data-en="TARO">ТАРО</h3>
+                            <h3 class="drink-name" data-ru="С СОЛЕНЫМ КРЕМОМ" data-en="WITH SALTED CREAM">С СОЛЕНЫМ КРЕМОМ</h3>
                             <p class="drink-price">27K</p>
                         </div>
                     </div>
@@ -167,7 +166,8 @@
                         </div>
                         <img src="src/taro_egg.png" alt="Таро Яичный" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">ТАРО С ЯИЧНЫМ КРЕМОМ </h3>
+                            <h3 class="drink-name" data-ru="ТАРО" data-en="TARO">ТАРО</h3>
+                            <h3 class="drink-name" data-ru="С ЯИЧНЫМ КРЕМОМ" data-en="WITH EGG CREAM">С ЯИЧНЫМ КРЕМОМ</h3>
                             <p class="drink-price">29K</p>
                         </div>
                     </div>
@@ -182,24 +182,25 @@
                         </div>
                         <img src="src/taro_nestle.png" alt="Таро Нестле" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">ТАРО С МОЛОКОМ НЕСТЛЕ </h3>
+                            <h3 class="drink-name" data-ru="ТАРО" data-en="TARO">ТАРО</h3>
+                            <h3 class="drink-name" data-ru="С МОЛОКОМ НЕСТЛЕ" data-en="WITH NESTLE MILK">С МОЛОКОМ НЕСТЛЕ</h3>
                             <p class="drink-price">29K</p>
                         </div>
                     </div>
 
-
-                    <!-- Карточка 3: Яичный крем -->
+                    <!-- Карточка 5: Таро с матчей -->
                     <div class="drink-card">
                         <img src="src/taro_egg_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
                             <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
                             <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
                             <img src="src/taro_pouder.png" alt="" class="ingredient ing-taro_pouder">
-                            <img src="src/matcha_powder.png" alt="" class="ingredient ing-matcha_powder">
+                            <img src="src/matcha_pouder.png" alt="" class="ingredient" id="ing-matcha_taro">
                         </div>
                         <img src="src/taro_matcha_latte.png" alt="Таро Матча" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">ТАРО С МАТЧЕЙ </h3>
+                            <h3 class="drink-name" data-ru="ТАРО" data-en="TARO">ТАРО</h3>
+                            <h3 class="drink-name" data-ru="С МАТЧЕЙ" data-en="WITH MATCHA">С МАТЧЕЙ</h3>
                             <p class="drink-price">29K</p>
                         </div>
                     </div>
@@ -208,9 +209,9 @@
             </div>
         </section>
 
-        <!-- МЯТА (4) -->
+        <!-- МЯТА -->
         <section id="myata" class="category-section">
-            <h2 class="category-title" style="color: #519672;">МЯТА</h2>
+            <h2 class="category-title" style="color: #519672;" data-ru="МЯТА" data-en="MINT">МЯТА</h2>
             <div class="carousel-container">
                 <button class="carousel-btn prev-btn">&#10092;</button>
                 <div class="carousel-slides">
@@ -223,10 +224,10 @@
                         </div>
                         <img src="src/mint_latte.png" alt="Мята Латте" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">МЯТА ЛАТТЕ </h3>
+                            <h3 class="drink-name" data-ru="МЯТА" data-en="MINT">МЯТА</h3>
+                            <h3 class="drink-name" data-ru="ЛАТТЕ" data-en="LATTE">ЛАТТЕ</h3>
                             <p class="drink-price">23K</p>
                         </div>
-
                     </div>
                     <div class="drink-card">
                         <img src="src/mint_salted_bg.png" alt="" class="card-bg">
@@ -238,66 +239,69 @@
                         </div>
                         <img src="src/mint_salted.png" alt="Мята Соленый" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">МЯТА С СОЛЕНЫМ КРЕМОМ </h3>
+                            <h3 class="drink-name" data-ru="МЯТА" data-en="MINT">МЯТА</h3>
+                            <h3 class="drink-name" data-ru="С СОЛЕНЫМ КРЕМОМ" data-en="WITH SALTED CREAM">С СОЛЕНЫМ КРЕМОМ</h3>
                             <p class="drink-price">27K</p>
                         </div>
-
                     </div>
                     <div class="drink-card">
                         <img src="src/mint_cacao_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
                             <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
                             <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
-                            <img src="src/cacao_bean.png" alt="" class="ingredient ing-cacao_bean">
+                            <img src="src/cacao_beam.png" alt="" class="ingredient" id="ing-cacao_mint">
                             <img src="src/mint_syrup.png" alt="" class="ingredient ing-mint_syrup">
                         </div>
                         <img src="src/mint_cacao.png" alt="Мята Какао" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">МЯТА С КАКАО ЛАТТЕ </h3>
+                            <h3 class="drink-name" data-ru="МЯТА" data-en="MINT">МЯТА</h3>
+                            <h3 class="drink-name" data-ru="С КАКАО ЛАТТЕ" data-en="WITH COCOA LATTE">С КАКАО ЛАТТЕ</h3>
                             <p class="drink-price">29K</p>
                         </div>
-
                     </div>
                     <div class="drink-card">
                         <img src="src/mint_coffee_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
                             <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
                             <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
-                            <img src="src/coffee_seed.png" alt="" class="ingredient ing-salted_hat">
+                            <img src="src/coffee_seeds.png" alt="" class="ingredient" id="ing-coffee_mint">
                             <img src="src/mint_syrup.png" alt="" class="ingredient ing-mint_syrup">
                         </div>
                         <img src="src/mint_coffee.png" alt="Мята Кофейный" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">МЯТА С КОФЕЙНЫМ ЛАТТЕ </h3>
+                            <h3 class="drink-name" data-ru="МЯТА" data-en="MINT">МЯТА</h3>
+                            <h3 class="drink-name" data-ru="С КОФЕЙНЫМ ЛАТТЕ" data-en="WITH COFFEE LATTE">С КОФЕЙНЫМ ЛАТТЕ</h3>
                             <p class="drink-price">29K</p>
                         </div>
-
                     </div>
                 </div>
                 <button class="carousel-btn next-btn">&#10093;</button>
             </div>
         </section>
 
-        <!-- КОФЕ (10) -->
+        <!-- КОФЕ -->
         <section id="kofe" class="category-section">
-            <h2 class="category-title" style="color: #A67F5B;">КОФЕ</h2>
+            <h2 class="category-title" style="color: #A67F5B;" data-ru="КОФЕ" data-en="COFFEE">КОФЕ</h2>
             <div class="carousel-container">
                 <button class="carousel-btn prev-btn">&#10092;</button>
+
                 <div class="carousel-slides">
-                    <!-- Заполните 10 карточек -->
+                    <!-- 1. Эспрессо -->
                     <div class="drink-card active">
                         <img src="src/coffee_espresso_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
                             <img src="src/ice_cube.png" alt="" class="ingredient" id="ing-ice_espresso">
                             <img src="src/coffee_seeds.png" alt="" class="ingredient ing-coffee_seed">
                         </div>
-                        <img src="src/coffee_espresso.png" alt="Кофе Эспрессо" class="drink-image">
+                        <img src="src/coffee_espresso.png" alt="Кофе Эспрессо" class="drink-image coffee-espresso-img">
                         <div class="drink-info">
-                            <h3 class="drink-name">ЭСПРЕССО/АМЕРИКАНО</h3>
+                            <h3 class="drink-name" data-ru="ЭСПРЕССО" data-en="ESPRESSO">ЭСПРЕССО</h3>
+                            <h3 class="drink-name" data-ru="/АМЕРИКАНО" data-en="/AMERICANO">/АМЕРИКАНО</h3>
                             <p class="drink-price">17K</p>
                         </div>
-
                     </div>
+
+                    <!-- 2. Со сгущенкой -->
                     <div class="drink-card">
                         <img src="src/coffee_condensed_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
@@ -307,10 +311,13 @@
                         </div>
                         <img src="src/coffee_condensed.png" alt="Кофе со сгущенкой" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">КОФЕ СО СГУЩЕНКОЙ</h3>
+                            <h3 class="drink-name" data-ru="КОФЕ" data-en="COFFEE">КОФЕ</h3>
+                            <h3 class="drink-name" data-ru="СО СГУЩЕНКОЙ" data-en="WITH CONDENSED MILK">СО СГУЩЕНКОЙ</h3>
                             <p class="drink-price">18K</p>
                         </div>
                     </div>
+
+                    <!-- 3. С соленым кремом -->
                     <div class="drink-card">
                         <img src="src/coffee_salted_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
@@ -320,11 +327,13 @@
                         </div>
                         <img src="src/coffee_salted.png" alt="Кофе с соленой шапкой" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">КОФЕ С СОЛЕНЫМ КРЕМОМ</h3>
+                            <h3 class="drink-name" data-ru="КОФЕ" data-en="COFFEE">КОФЕ</h3>
+                            <h3 class="drink-name" data-ru="С СОЛЕНЫМ КРЕМОМ" data-en="WITH SALTED CREAM">С СОЛЕНЫМ КРЕМОМ</h3>
                             <p class="drink-price">22K</p>
                         </div>
-
                     </div>
+
+                    <!-- 4. С яичным кремом -->
                     <div class="drink-card">
                         <img src="src/coffee_egg_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
@@ -334,26 +343,29 @@
                         </div>
                         <img src="src/coffee_egg.png" alt="Кофе с яичным кремом" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">КОФЕ С ЯИЧНЫМ КРЕМОМ</h3>
+                            <h3 class="drink-name" data-ru="КОФЕ" data-en="COFFEE">КОФЕ</h3>
+                            <h3 class="drink-name" data-ru="С ЯИЧНЫМ КРЕМОМ" data-en="WITH EGG CREAM">С ЯИЧНЫМ КРЕМОМ</h3>
                             <p class="drink-price">24K</p>
                         </div>
-
                     </div>
 
+                    <!-- 5. С молоком -->
                     <div class="drink-card">
                         <img src="src/coffee_fresh_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
                             <img src="src/ice_cube.png" alt="" class="ingredient ing-ice">
-                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-egg_cream">
+                            <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
                             <img src="src/coffee_seeds.png" alt="" class="ingredient ing-coffee_seed">
                         </div>
-                        <img src="src/coffee_fresh.png" alt="Кофе с яичным кремом" class="drink-image">
+                        <img src="src/coffee_fresh.png" alt="Кофе с молоком" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">КОФЕ СО СВЕЖИМ МОЛОКОМ</h3>
+                            <h3 class="drink-name" data-ru="КОФЕ" data-en="COFFEE">КОФЕ</h3>
+                            <h3 class="drink-name" data-ru="С МОЛОКОМ" data-en="WITH MILK">С МОЛОКОМ</h3>
                             <p class="drink-price">24K</p>
                         </div>
-
                     </div>
+
+                    <!-- 6. С арахисом -->
                     <div class="drink-card">
                         <img src="src/coffee_peanut_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
@@ -364,11 +376,13 @@
                         </div>
                         <img src="src/coffee_peanut.png" alt="Кофе с арахисом" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">КОФЕ С АРАХИСОМ</h3>
+                            <h3 class="drink-name" data-ru="КОФЕ" data-en="COFFEE">КОФЕ</h3>
+                            <h3 class="drink-name" data-ru="С АРАХИСОМ" data-en="WITH PEANUT">С АРАХИСОМ</h3>
                             <p class="drink-price">26K</p>
                         </div>
-
                     </div>
+
+                    <!-- 7. С Нестле -->
                     <div class="drink-card">
                         <img src="src/coffee_nestle_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
@@ -378,11 +392,13 @@
                         </div>
                         <img src="src/coffee_nestle.png" alt="Кофе с нестле" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">КОФЕ С МОЛОКОМ НЕСТЛЕ</h3>
+                            <h3 class="drink-name" data-ru="КОФЕ" data-en="COFFEE">КОФЕ</h3>
+                            <h3 class="drink-name" data-ru="С МОЛОКОМ НЕСТЛЕ" data-en="WITH NESTLE MILK">С МОЛОКОМ НЕСТЛЕ</h3>
                             <p class="drink-price">31K</p>
                         </div>
-
                     </div>
+
+                    <!-- 8. Латте -->
                     <div class="drink-card">
                         <img src="src/coffee_white_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
@@ -390,13 +406,14 @@
                             <img src="src/milk_bottle.png" alt="" class="ingredient ing-milk">
                             <img src="src/coffee_seeds.png" alt="" class="ingredient ing-coffee_seed">
                         </div>
-                        <img src="src/coffee_white.png" alt="Кофе с арахисом" class="drink-image">
+                        <img src="src/coffee_white.png" alt="Латте" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">ЛАТТЕ</h3>
+                            <h3 class="drink-name" data-ru="ЛАТТЕ" data-en="LATTE">ЛАТТЕ</h3>
                             <p class="drink-price">23K</p>
                         </div>
-
                     </div>
+
+                    <!-- 9. Латте с соленым кремом -->
                     <div class="drink-card">
                         <img src="src/coffee_white_salted_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
@@ -405,13 +422,15 @@
                             <img src="src/coffee_seeds.png" alt="" class="ingredient ing-coffee_seed">
                             <img src="src/salted_hat.png" alt="" class="ingredient ing-salted_hat">
                         </div>
-                        <img src="src/coffee_white_salted.png" alt="Кофе с арахисом" class="drink-image">
+                        <img src="src/coffee_white_salted.png" alt="Латте с соленым кремом" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">ЛАТТЕ С СОЛЕНЫМ КРЕМОМ</h3>
+                            <h3 class="drink-name" data-ru="ЛАТТЕ" data-en="LATTE">ЛАТТЕ</h3>
+                            <h3 class="drink-name" data-ru="С СОЛЕНЫМ КРЕМОМ" data-en="WITH SALTED CREAM">С СОЛЕНЫМ КРЕМОМ</h3>
                             <p class="drink-price">27K</p>
                         </div>
-
                     </div>
+
+                    <!-- 10. Кофе с яичным кремом -->
                     <div class="drink-card">
                         <img src="src/coffee_white_egg_bg.png" alt="" class="card-bg">
                         <div class="ingredients-container">
@@ -422,18 +441,20 @@
                         </div>
                         <img src="src/coffee_white_egg.png" alt="Кофе с яйцом" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">КОФЕ С ЯЙЧНЫМ КРЕМОМ</h3>
+                            <h3 class="drink-name" data-ru="КОФЕ" data-en="COFFEE">КОФЕ</h3>
+                            <h3 class="drink-name" data-ru="С ЯИЧНЫМ КРЕМОМ" data-en="WITH EGG CREAM">С ЯИЧНЫМ КРЕМОМ</h3>
                             <p class="drink-price">27K</p>
                         </div>
-
                     </div>
-                    <button class="carousel-btn next-btn">&#10093;</button>
                 </div>
+
+                <button class="carousel-btn next-btn">&#10093;</button>
+            </div>
         </section>
 
-        <!-- МАТЧА (Восстановлено) -->
+        <!-- МАТЧА -->
         <section id="matcha" class="category-section">
-            <h2 class="category-title" style="color: #3E751D;">МАТЧА</h2>
+            <h2 class="category-title" style="color: #3E751D;" data-ru="МАТЧА" data-en="MATCHA">МАТЧА</h2>
             <div class="carousel-container">
                 <button class="carousel-btn prev-btn" aria-label="Назад">&#10092;</button>
                 <div class="carousel-slides">
@@ -446,8 +467,8 @@
                         </div>
                         <img src="src/matcha_latte.png" alt="Матча Латте" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">МАТЧА </h3>
-                            <h3 class="drink-name">ЛАТТЕ</h3>
+                            <h3 class="drink-name" data-ru="МАТЧА" data-en="MATCHA">МАТЧА</h3>
+                            <h3 class="drink-name" data-ru="ЛАТТЕ" data-en="LATTE">ЛАТТЕ</h3>
                             <p class="drink-price">24-30K</p>
                         </div>
                     </div>
@@ -461,7 +482,8 @@
                         </div>
                         <img src="src/matcha_salted.png" alt="Матча с соленым кремом" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">МАТЧА С СОЛЕНЫМ КРЕМОМ</h3>
+                            <h3 class="drink-name" data-ru="МАТЧА" data-en="MATCHA">МАТЧА</h3>
+                            <h3 class="drink-name" data-ru="С СОЛЕНЫМ КРЕМОМ" data-en="WITH SALTED CREAM">С СОЛЕНЫМ КРЕМОМ</h3>
                             <p class="drink-price">28K</p>
                         </div>
                     </div>
@@ -475,7 +497,8 @@
                         </div>
                         <img src="src/matcha_egg.png" alt="Матча с яичным кремом" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">МАТЧА С ЯИЧНЫМ КРЕМОМ</h3>
+                            <h3 class="drink-name" data-ru="МАТЧА" data-en="MATCHA">МАТЧА</h3>
+                            <h3 class="drink-name" data-ru="С ЯИЧНЫМ КРЕМОМ" data-en="WITH EGG CREAM">С ЯИЧНЫМ КРЕМОМ</h3>
                             <p class="drink-price">30K</p>
                         </div>
                     </div>
@@ -488,7 +511,8 @@
                         </div>
                         <img src="src/matcha_nestle.png" alt="Матча с молоком Нестле" class="drink-image">
                         <div class="drink-info">
-                            <h3 class="drink-name">МАТЧА С МОЛОКОМ НЕСТЛЕ</h3>
+                            <h3 class="drink-name" data-ru="МАТЧА" data-en="MATCHA">МАТЧА</h3>
+                            <h3 class="drink-name" data-ru="С МОЛОКОМ НЕСТЛЕ" data-en="WITH NESTLE MILK">С МОЛОКОМ НЕСТЛЕ</h3>
                             <p class="drink-price">30K</p>
                         </div>
                     </div>
@@ -498,31 +522,7 @@
         </section>
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.documentElement.style.scrollBehavior = 'smooth';
-            document.querySelectorAll('.carousel-container').forEach(container => {
-                const slides = container.querySelectorAll('.drink-card');
-                const prevBtn = container.querySelector('.prev-btn');
-                const nextBtn = container.querySelector('.next-btn');
-                let currentIndex = 0;
-                function showSlide(index) {
-                    slides.forEach((slide, i) => {
-                        slide.classList.remove('active');
-                        if (i === index) slide.classList.add('active');
-                    });
-                }
-                nextBtn.addEventListener('click', () => {
-                    currentIndex = (currentIndex + 1) % slides.length;
-                    showSlide(currentIndex);
-                });
-                prevBtn.addEventListener('click', () => {
-                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                    showSlide(currentIndex);
-                });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

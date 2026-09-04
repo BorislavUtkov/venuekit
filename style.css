@@ -48,7 +48,7 @@ body {
     max-width: 480px;
     z-index: 1000;
     /* Убираем фон из шапки, так как он теперь задан в body и шапка будет прозрачной */
-    background-color: rgba(255, 255, 255, 0.85); /* Добавим легкий фон шапке, чтобы текст меню читался */
+    background-color: #F8F4EB; /* Добавим легкий фон шапке, чтобы текст меню читался */
     border-bottom: 2px solid rgba(26, 60, 34, 0.2);
 }
 
@@ -157,7 +157,8 @@ body {
     border-radius: 0;
     overflow: hidden;
     padding: 20px 15px;
-    box-shadow: 0 4px 13px #1D4A33;
+    /* Нейтральная мягкая тень взамен зеленого #1D4A33 */
+    box-shadow: 0 8px 24px rgba(51, 51, 51, 0.18); 
     flex-direction: column;
     justify-content: flex-end;
     min-height: 500px;
@@ -179,17 +180,35 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    filter: drop-shadow(0px 4px 13px #1D4A33); 
+    /* Нейтральная тень для самого фонового изображения */
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
 }
 
+/* Фиксированное позиционирование изображения */
 .drink-image {
-    position: relative;
+    position: absolute;
     z-index: 3;
-    width: 85%;
-    max-width: 300px;
-    margin: 0 0 0 -40px;
+    top: 35px; /* Фиксированное расстояние от верха карточки */
+    left: 50%;
+    transform: translateX(-80%); /* Точное центрирование по горизонтали */
+    width: 260px; /* Единый размер области картинки */
+    height: 310px; /* Единая высота области картинки */
+    object-fit: contain; /* Картинка масштабируется без искажений proportions */
+    margin: 0; /* Убрано смещение -40px */
     display: block;
     filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+}
+
+/* Фиксированное позиционирование блока с названием и ценой */
+.drink-info {
+    position: absolute;
+    bottom: 25px; /* Зафиксировано внизу карточки */
+    left: 20px;
+    right: 20px;
+    z-index: 4;
+    text-align: left;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .ingredients-container {
@@ -222,7 +241,7 @@ body {
 .drink-price {
     font-family: 'Philosopher', sans-serif;
     font-weight: 700;
-    font-size: 32px;
+    font-size: 30px;
     line-height: 1.2;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -287,3 +306,11 @@ body {
 #ing-ice_espresso { top: 20%; right: 10%; width: 55px; }
 .ing-condenssed { top: 20%; right: 7%; width: 90px; }
 .ing-peanut { top: 8%; right: 20%; width: 80px; }
+#ing-matcha_taro { top: 11%; right: 23%; width: 80px; }
+#ing-coffee_mint { top: 13%; right: 26%; width: 57px; }
+#ing-cacao_mint  { top: 13%; right: 26%; width: 65px; }
+
+/* Индивидуальное позиционирование картинки для Эспрессо */
+.coffee-espresso-img {
+    transform: translateX(-65%) !important;
+}

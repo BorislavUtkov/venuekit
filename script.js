@@ -1,12 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Переключение языков
-    const langSwitchers = document.querySelectorAll('.lang');
-    langSwitchers.forEach(lang => {
-        lang.addEventListener('click', () => {
-            langSwitchers.forEach(l => l.classList.remove('active'));
-            lang.classList.add('active');
+    // Переключение языков (RU / EN)
+const langSwitchers = document.querySelectorAll('.lang');
+
+langSwitchers.forEach(langBtn => {
+    langBtn.addEventListener('click', () => {
+        // Меняем активную кнопку (RU/EN)
+        langSwitchers.forEach(l => l.classList.remove('active'));
+        langBtn.classList.add('active');
+
+        // Определяем выбранный язык ('ru' или 'en')
+        const selectedLang = langBtn.textContent.trim().toLowerCase();
+
+        // находим все элементы, у которых есть атрибуты перевода
+        const translateElements = document.querySelectorAll('[data-ru][data-en]');
+
+        // Меняем текст на выбранный язык
+        translateElements.forEach(el => {
+            if (el.dataset[selectedLang]) {
+                el.textContent = el.dataset[selectedLang];
+            }
         });
     });
+});
 
     // Функция подсветки активного пункта персональным цветом
     const navLinks = document.querySelectorAll('.nav-link');
