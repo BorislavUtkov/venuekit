@@ -228,6 +228,29 @@ router.get('/menu-items', async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
+// PATCH /api/admin/venue-css
+router.patch('/venue-css', async (req, res) => {
+  const { slug, custom_css } = req.body;
 
+  if (!slug || !custom_css) {
+    return res.status(400).json({ error: 'slug and custom_css are required' });
+  }
+
+  try {
+    const { data, error } = await supabaseAdmin
+      .from('venues')
+      .update({ custom_css })
+      .eq('slug', slug)
+      .select()
+      .single();
+
+    if (error) return res.status(500).json({ error: error.message });
+
+    return res.json(data);
+  } catch (error) {
+    console.error('PATCH /api/admin/venue-css error:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 module.exports = router;
