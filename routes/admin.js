@@ -208,7 +208,7 @@ router.get('/menu-items', async (req, res) => {
 
     let query = supabaseAdmin
       .from('menu_items')
-      .select('id, venue_id, category, name, price_vnd')
+      .select('id, venue_id, category, name, price_vnd, photo_url')
       .order('category')
       .order('sort_order');
 
@@ -228,6 +228,7 @@ router.get('/menu-items', async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 // PATCH /api/admin/venue-css
 router.patch('/venue-css', async (req, res) => {
   const { slug, custom_css } = req.body;
