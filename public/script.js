@@ -1,15 +1,16 @@
 const MEDIA_BASE = 'https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU/';
-const API_BASE = 'http://localhost:3001';
-// const DEFAULT_SLUG = 'REU_Coffee';
+const API_BASE = '';
 
 function getCurrentSlug() {
-    return new URLSearchParams(window.location.search).get('slug') || DEFAULT_SLUG;
+    return new URLSearchParams(window.location.search).get('slug');
 }
 
 function loadVenueCss(slug) {
+    if (!slug) return;
+
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `${slug}.css`;
+    link.href = `https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU/${slug}.css`;
     document.head.appendChild(link);
 }
 
@@ -149,6 +150,12 @@ function initCarousels() {
 async function loadMenu() {
     const slug = getCurrentSlug();
 
+    if (!slug) {
+        const content = document.getElementById('menu-content');
+        content.innerHTML = `<p style="text-align:center;padding:40px;">Укажите slug заведения</p>`;
+        return;
+    }
+
     loadVenueCss(slug);
 
     try {
@@ -159,11 +166,13 @@ async function loadMenu() {
         }
 
         const data = await res.json();
-if (data.venue && data.venue.customCss) {
-    const style = document.createElement('style');
-    style.textContent = data.venue.customCss;
-    document.head.appendChild(style);
-}
+
+        if (data.venue && data.venue.customCss) {
+            const style = document.createElement('style');
+            style.textContent = data.venue.customCss;
+            document.head.appendChild(style);
+        }
+
         buildNav(data.menu);
         buildSections(data.menu);
     } catch (error) {
