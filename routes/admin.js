@@ -229,6 +229,25 @@ router.get('/menu-items', async (req, res) => {
   }
 });
 
+// GET /api/admin/menu-item-ingredients
+router.get('/menu-item-ingredients', async (req, res) => {
+  try {
+    const { data, error } = await supabaseAdmin
+      .from('menu_item_ingredients')
+      .select('id, menu_item_id, image_url, css_class, sort_order')
+      .order('sort_order');
+
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
+
+    return res.json(data);
+  } catch (error) {
+    console.error('GET /api/admin/menu-item-ingredients error:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // PATCH /api/admin/venue-css
 router.patch('/venue-css', async (req, res) => {
   const { slug, custom_css } = req.body;
