@@ -1,6 +1,8 @@
 const MEDIA_BASE = 'https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU/';
 const API_BASE = '';
 
+let categoryColorMap = {};
+
 function getCurrentSlug() {
     return new URLSearchParams(window.location.search).get('slug');
 }
@@ -10,8 +12,23 @@ function loadVenueCss(slug) {
 
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = `https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU/${slug}.css`;
+    link.href = `${MEDIA_BASE}${slug}.css`;
     document.head.appendChild(link);
+}
+
+function loadVenueConfig(slug) {
+    return new Promise(resolve => {
+        const script = document.createElement('script');
+        script.src = `${MEDIA_BASE}${slug}.config.js`;
+        script.onload = () => {
+            if (window.VENUE_CONFIG && window.VENUE_CONFIG.categoryColorMap) {
+                categoryColorMap = window.VENUE_CONFIG.categoryColorMap;
+            }
+            resolve();
+        };
+        script.onerror = () => resolve();
+        document.head.appendChild(script);
+    });
 }
 
 function setImageSources(container = document) {
@@ -33,6 +50,7 @@ function buildNav(menu) {
         link.href = `#${category.toLowerCase()}`;
         link.className = 'nav-link' + (index === 0 ? ' active' : '');
         link.textContent = category.toUpperCase();
+        link.dataset.color = categoryColorMap[category] || '#3E751D';
         nav.appendChild(link);
     });
 
@@ -46,6 +64,10 @@ function buildNav(menu) {
         });
 
         activeLink.classList.add('active');
+
+        const color = activeLink.getAttribute('data-color');
+        activeLink.style.color = color;
+        activeLink.style.borderColor = color;
     }
 
     links.forEach(link => {
@@ -69,6 +91,7 @@ function buildSections(menu) {
 
         const title = document.createElement('h2');
         title.className = 'category-title';
+        title.style.color = categoryColorMap[category] || '#3E751D';
         title.textContent = category.toUpperCase();
 
         const carousel = document.createElement('div');
@@ -157,6 +180,7 @@ async function loadMenu() {
     }
 
     loadVenueCss(slug);
+    await loadVenueConfig(slug);
 
     try {
         const res = await fetch(`${API_BASE}/api/venue?slug=${encodeURIComponent(slug)}`);
