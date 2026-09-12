@@ -1,4 +1,4 @@
-const MEDIA_BASE = 'https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU/';
+const MEDIA_BASE = 'https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU_Coffee/';
 const API_BASE = '';
 
 let categoryColorMap = {};
