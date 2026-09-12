@@ -1,89 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#f7f4ee">
-    <meta name="description" content="Меню заведения">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#f7f4ee" />
+    <meta name="description" content="Меню заведения" />
     <title>Меню</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <div class="site-background" aria-hidden="true"></div>
 
     <header class="fixed-header">
-        <div class="header-top">
-            <img data-src="logo.png" alt="Logo" class="logo">
-            <h1 class="main-title">МЕНЮ</h1>
-            <nav class="lang-switch" aria-label="Выбор языка">
-                <span class="lang active" data-lang="ru">RU</span>
-                <span class="lang" data-lang="en">EN</span>
-            </nav>
-        </div>
-
-        <nav class="categories-nav" id="categories-nav" aria-label="Категории меню">
-            <!-- Навигация будет построена из API -->
+      <div class="header-top">
+        <img data-src="logo.png" alt="Logo" class="logo" />
+        <h1 class="main-title">МЕНЮ</h1>
+        <nav class="lang-switch" aria-label="Выбор языка">
+          <span class="lang active" data-lang="ru">RU</span>
+          <span class="lang" data-lang="en">EN</span>
         </nav>
+      </div>
+
+      <nav
+        class="categories-nav"
+        id="categories-nav"
+        aria-label="Категории меню"
+      >
+        <!-- Навигация будет построена из API -->
+      </nav>
     </header>
 
     <main class="content" id="menu-content" aria-live="polite">
-        <!-- Скелетон загрузки -->
-        <div class="skeleton" id="menu-skeleton">
-            <div class="skeleton-title"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-        </div>
+      <!-- Скелетон загрузки -->
+      <div class="skeleton" id="menu-skeleton">
+        <div class="skeleton-title"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
 
-        <!-- Заглушка ошибки -->
-        <div class="error-state" id="menu-error" style="display:none;">
-            <p class="error-message" id="error-message">Не удалось загрузить меню</p>
-            <button class="error-retry" id="error-retry" type="button">Попробовать снова</button>
-        </div>
+      <!-- Заглушка ошибки -->
+      <div class="error-state" id="menu-error" style="display: none">
+        <p class="error-message" id="error-message">
+          Не удалось загрузить меню
+        </p>
+        <button class="error-retry" id="error-retry" type="button">
+          Попробовать снова
+        </button>
+      </div>
 
-        <!-- Секции будут построены из API -->
+      <!-- Секции будут построены из API -->
     </main>
 
     <footer class="app-footer" id="venue-footer" hidden></footer>
 
     <!-- Модальное окно блюда -->
     <div class="modal" id="item-modal" aria-hidden="true" role="dialog">
-        <div class="modal-backdrop" data-close></div>
-        <div class="modal-content">
-            <button class="modal-close" data-close aria-label="Закрыть" type="button">×</button>
-            <div class="modal-body" id="item-modal-body"></div>
-        </div>
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-content">
+        <button
+          class="modal-close"
+          data-close
+          aria-label="Закрыть"
+          type="button"
+        >
+          ×
+        </button>
+        <div class="modal-body" id="item-modal-body"></div>
+      </div>
     </div>
 
     <!-- Кнопка «вверх» -->
-    <button class="scroll-top" id="scroll-top" aria-label="Наверх" type="button">↑</button>
+    <button
+      class="scroll-top"
+      id="scroll-top"
+      aria-label="Наверх"
+      type="button"
+    >
+      ↑
+    </button>
 
     <!-- Панель «Итого» -->
     <div class="cart-summary" id="cart-summary" hidden>
-        <button class="cart-summary-header" id="cart-summary-toggle" type="button">
-            <span class="cart-summary-title">
-                🛒 <span id="cart-summary-label">Итого</span>: <span id="cart-summary-total">0K</span>
-            </span>
-            <span class="cart-summary-icon">▾</span>
-        </button>
-        <div class="cart-summary-body" id="cart-summary-body">
-            <div class="cart-items" id="cart-items"></div>
-            <div class="cart-bottom">
-                <div class="cart-total-line">
-                    <span id="cart-final-label">Итоговая стоимость</span> = <span id="cart-total-final">0K</span>
-                </div>
-                <button class="cart-clear" id="cart-clear" type="button">Очистить</button>
-            </div>
+      <button
+        class="cart-summary-header"
+        id="cart-summary-toggle"
+        type="button"
+      >
+        <span class="cart-summary-title">
+          🛒 <span id="cart-summary-label">Итого</span>:
+          <span id="cart-summary-total">0K</span>
+        </span>
+        <span id="cart-toggle-text">Раскрыть</span>
+        <span class="cart-summary-icon">▾</span>
+      </button>
+      <div class="cart-summary-body" id="cart-summary-body">
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-bottom">
+          <div class="cart-total-line">
+            <span id="cart-final-label">Итоговая стоимость</span> =
+            <span id="cart-total-final">0K</span>
+          </div>
+          <button class="cart-clear" id="cart-clear" type="button">
+            Очистить
+          </button>
         </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>

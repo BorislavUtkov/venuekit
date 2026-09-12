@@ -2,9 +2,9 @@ const MEDIA_BASE_BASE = 'https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/obj
 const API_BASE = '';
 
 const CART_LABELS = {
-    ru: { total: "Итого", clear: "Очистить", finalLabel: "Итоговая стоимость" },
-    en: { total: "Total", clear: "Clear", finalLabel: "Total cost" },
-    vn: { total: "Tổng", clear: "Xóa", finalLabel: "Tổng chi phí" }
+    ru: { total: "Итого", clear: "Очистить", finalLabel: "Итоговая стоимость", expand: "Раскрыть", collapse: "Скрыть" },
+    en: { total: "Total", clear: "Clear", finalLabel: "Total cost", expand: "Expand", collapse: "Collapse" },
+    vn: { total: "Tổng", clear: "Xóa", finalLabel: "Tổng chi phí", expand: "Mở", collapse: "Đóng" }
 };
 
 const CART_MAX_ITEMS = 50;
@@ -204,7 +204,6 @@ function addToCart(itemId) {
 
     renderCartCounter(itemId);
     renderCartSummary();
-    expandCartSummary();
 }
 
 function removeFromCart(itemId) {
@@ -268,11 +267,17 @@ function renderCartSummary() {
     const labelEl = document.getElementById('cart-summary-label');
     const finalLabelEl = document.getElementById('cart-final-label');
     const clearBtn = document.getElementById('cart-clear');
+    const toggleTextEl = document.getElementById('cart-toggle-text');
 
     const labels = CART_LABELS[currentLang] || CART_LABELS.ru;
     if (labelEl) labelEl.textContent = labels.total;
     if (finalLabelEl) finalLabelEl.textContent = labels.finalLabel;
     if (clearBtn) clearBtn.textContent = labels.clear;
+
+    if (toggleTextEl) {
+        const isExpanded = summary.classList.contains('expanded');
+        toggleTextEl.textContent = isExpanded ? labels.collapse : labels.expand;
+    }
 
     const total = getCartTotal();
     const count = getCartCount();
@@ -333,7 +338,16 @@ function collapseCartSummary() {
 function toggleCartSummary() {
     const summary = document.getElementById('cart-summary');
     if (summary.hidden) return;
+
     summary.classList.toggle('expanded');
+
+    const toggleTextEl = document.getElementById('cart-toggle-text');
+    const labels = CART_LABELS[currentLang] || CART_LABELS.ru;
+    if (toggleTextEl) {
+        toggleTextEl.textContent = summary.classList.contains('expanded')
+            ? labels.collapse
+            : labels.expand;
+    }
 }
 
 /* ========== НАВИГАЦИЯ ========== */
