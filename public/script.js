@@ -31,7 +31,6 @@ function loadVenueConfig(slug) {
                 categoryColorMap = window.VENUE_CONFIG.categoryColorMap;
             }
 
-            // Футер
             if (window.VENUE_CONFIG && window.VENUE_CONFIG.footer_text) {
                 const footer = document.getElementById('venue-footer');
                 footer.innerHTML = window.VENUE_CONFIG.footer_text;
@@ -95,30 +94,12 @@ function buildNav(menu) {
         nav.appendChild(link);
     });
 
-    const links = nav.querySelectorAll('.nav-link');
-
-    function setActiveLink(activeLink) {
-        links.forEach(link => {
-            link.classList.remove('active');
-            link.style.color = '';
-            link.style.borderColor = 'transparent';
-        });
-
-        activeLink.classList.add('active');
-
-        const color = activeLink.getAttribute('data-color');
-        activeLink.style.color = color;
-        activeLink.style.borderColor = color;
-    }
-
-    links.forEach(link => {
-        link.addEventListener('click', function () {
-            setActiveLink(this);
-        });
-    });
-
     const first = nav.querySelector('.nav-link.active');
-    if (first) setActiveLink(first);
+    if (first) {
+        const color = first.dataset.color;
+        first.style.color = color;
+        first.style.borderColor = color;
+    }
 
     initNavObserver();
 }
@@ -129,30 +110,34 @@ function initNavObserver() {
 
     if (!sections.length || !links.length) return;
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.id;
-                links.forEach(link => {
-                    link.classList.remove('active');
-                    link.style.color = '';
-                    link.style.borderColor = 'transparent';
+    function updateActive() {
+        const scrollPos = window.scrollY + 160;
 
-                    if (link.dataset.category === id) {
-                        link.classList.add('active');
-                        const color = link.dataset.color;
-                        link.style.color = color;
-                        link.style.borderColor = color;
-                    }
-                });
+        let activeId = sections[0]?.id;
+
+        sections.forEach(section => {
+            if (section.offsetTop <= scrollPos) {
+                activeId = section.id;
             }
         });
-    }, {
-        rootMargin: '-140px 0px -60% 0px',
-        threshold: 0
-    });
 
-    sections.forEach(section => observer.observe(section));
+        links.forEach(link => {
+            const isActive = link.dataset.category === activeId;
+            link.classList.toggle('active', isActive);
+
+            if (isActive) {
+                const color = link.dataset.color || '#3E751D';
+                link.style.color = color;
+                link.style.borderColor = color;
+            } else {
+                link.style.color = '';
+                link.style.borderColor = 'transparent';
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
 }
 
 function buildSections(menu) {
@@ -215,7 +200,6 @@ function buildSections(menu) {
         carousel.appendChild(slidesWrapper);
         carousel.appendChild(nextBtn);
 
-        // Точки и счётчик
         const dotsWrapper = document.createElement('div');
         dotsWrapper.className = 'carousel-dots';
 
@@ -290,7 +274,6 @@ function initCarousels() {
             });
         });
 
-        // Свайп
         let touchStartX = 0;
         let touchStartY = 0;
         let isSwiping = false;
@@ -385,7 +368,6 @@ async function loadMenu() {
     showSkeleton();
     hideError();
 
-    // Логотип — грузим сразу, до запроса API
     const logo = document.querySelector('img[data-src="logo.png"]');
     if (logo) {
         logo.src = MEDIA_BASE + 'logo.png';
