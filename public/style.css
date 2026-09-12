@@ -641,7 +641,14 @@ body.cart-active .content {
 .cart-clear:hover {
     background: #e0ddd5;
 }
+.counter-value[hidden],
+.counter-btn[hidden] {
+    display: none;
+}
 
+.drink-counter.empty {
+    padding: 4px;
+}
 .ing-basic-1 { top: 12%; right: 20%; width: 75px; }
 .ing-basic-2 { top: 45%; right: 22%; width: 65px; }
 .ing-basic-3 { top: 28%; right: 8%; width: 85px; }
