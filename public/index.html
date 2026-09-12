@@ -23,8 +23,8 @@
             <img data-src="logo.png" alt="Logo" class="logo">
             <h1 class="main-title">МЕНЮ</h1>
             <nav class="lang-switch" aria-label="Выбор языка">
-                <span class="lang active">RU</span>
-                <span class="lang">EN</span>
+                <span class="lang active" data-lang="ru">RU</span>
+                <span class="lang" data-lang="en">EN</span>
             </nav>
         </div>
 
@@ -52,7 +52,7 @@
 
     <footer class="app-footer" id="venue-footer" hidden></footer>
 
-    <!-- Модальные окна -->
+    <!-- Модальное окно блюда -->
     <div class="modal" id="item-modal" aria-hidden="true" role="dialog">
         <div class="modal-backdrop" data-close></div>
         <div class="modal-content">
@@ -63,6 +63,25 @@
 
     <!-- Кнопка «вверх» -->
     <button class="scroll-top" id="scroll-top" aria-label="Наверх" type="button">↑</button>
+
+    <!-- Панель «Итого» -->
+    <div class="cart-summary" id="cart-summary" hidden>
+        <button class="cart-summary-header" id="cart-summary-toggle" type="button">
+            <span class="cart-summary-title">
+                🛒 <span id="cart-summary-label">Итого</span>: <span id="cart-summary-total">0K</span>
+            </span>
+            <span class="cart-summary-icon">▾</span>
+        </button>
+        <div class="cart-summary-body" id="cart-summary-body">
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-bottom">
+                <div class="cart-total-line">
+                    <span id="cart-final-label">Итоговая стоимость</span> = <span id="cart-total-final">0K</span>
+                </div>
+                <button class="cart-clear" id="cart-clear" type="button">Очистить</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
