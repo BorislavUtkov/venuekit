@@ -243,12 +243,20 @@ function renderCartCounter(itemId) {
 
     const count = cartState.items[itemId] || 0;
     const valueEl = counter.querySelector('.counter-value');
+    const minusBtn = counter.querySelector('.counter-minus');
+
+    if (!valueEl) return;
 
     if (count === 0) {
-        counter.hidden = true;
+        valueEl.hidden = true;
+        valueEl.textContent = '';
+        if (minusBtn) minusBtn.hidden = true;
+        counter.classList.add('empty');
     } else {
-        counter.hidden = false;
+        valueEl.hidden = false;
         valueEl.textContent = count;
+        if (minusBtn) minusBtn.hidden = false;
+        counter.classList.remove('empty');
     }
 }
 
@@ -262,9 +270,9 @@ function renderCartSummary() {
     const clearBtn = document.getElementById('cart-clear');
 
     const labels = CART_LABELS[currentLang] || CART_LABELS.ru;
-    labelEl.textContent = labels.total;
-    finalLabelEl.textContent = labels.finalLabel;
-    clearBtn.textContent = labels.clear;
+    if (labelEl) labelEl.textContent = labels.total;
+    if (finalLabelEl) finalLabelEl.textContent = labels.finalLabel;
+    if (clearBtn) clearBtn.textContent = labels.clear;
 
     const total = getCartTotal();
     const count = getCartCount();
@@ -439,9 +447,9 @@ function buildSections(menu) {
                     <div class="drink-info-bottom">
                         <p class="drink-price">${formatPrice(item.priceVnd)}</p>
                         ${hasId ? `
-                            <div class="drink-counter" data-item-id="${item.id}" hidden>
-                                <button class="counter-btn counter-minus" type="button" aria-label="Убрать">−</button>
-                                <span class="counter-value">0</span>
+                            <div class="drink-counter empty" data-item-id="${item.id}">
+                                <button class="counter-btn counter-minus" type="button" aria-label="Убрать" hidden>−</button>
+                                <span class="counter-value" hidden></span>
                                 <button class="counter-btn counter-plus" type="button" aria-label="Добавить">+</button>
                             </div>
                         ` : ''}
