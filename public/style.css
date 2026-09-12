@@ -573,6 +573,9 @@ body.cart-active .content {
     font-size: 14px;
     font-weight: 500;
     color: #0b3d20;
+    background: rgba(0, 0, 0, 0.06);
+    padding: 6px 12px;
+    border-radius: 10px;
 }
 
 .cart-summary-icon {
