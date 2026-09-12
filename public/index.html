@@ -100,8 +100,10 @@
           🛒 <span id="cart-summary-label">Итого</span>:
           <span id="cart-summary-total">0K</span>
         </span>
-        <span id="cart-toggle-text">Раскрыть</span>
-        <span class="cart-summary-icon">▾</span>
+        <span class="cart-summary-toggle-label">
+          <span id="cart-toggle-text">Раскрыть</span>
+          <span class="cart-summary-icon">▾</span>
+        </span>
       </button>
       <div class="cart-summary-body" id="cart-summary-body">
         <div class="cart-items" id="cart-items"></div>
@@ -114,8 +116,12 @@
             Очистить
           </button>
         </div>
+        <p class="cart-note" id="cart-note"></p>
       </div>
     </div>
+
+    <!-- Всплывающий тост -->
+    <div class="cart-toast" id="cart-toast" role="status" aria-live="polite"></div>
 
     <script src="script.js"></script>
   </body>

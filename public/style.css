@@ -489,7 +489,7 @@ body.cart-active .content {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(11, 61, 32, 0.35);
+    background: rgba(11, 61, 32, 0.5);
     color: rgba(255, 255, 255, 0.85);
     border: none;
     font-size: 22px;
@@ -656,6 +656,54 @@ body.cart-active .content {
 .cart-clear:hover {
     background: #e0ddd5;
 }
+
+/* Примечание под итоговой суммой */
+.cart-note {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed #e0ddd5;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #6b6b6b;
+    font-family: 'Oswald', sans-serif;
+    text-align: left;
+    font-weight: 400;
+}
+
+/* Всплывающий тост-подсказка */
+.cart-toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    max-width: 440px;
+    width: calc(100% - 30px);
+    padding: 12px 18px;
+    background: rgba(11, 61, 32, 0.92);
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2000;
+}
+
+.cart-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+@media (min-width: 480px) {
+    .cart-toast {
+        max-width: 420px;
+    }
+}
+
 .counter-value[hidden],
 .counter-btn[hidden] {
     display: none;
@@ -664,6 +712,7 @@ body.cart-active .content {
 .drink-counter.empty {
     padding: 4px;
 }
+
 .ing-basic-1 { top: 12%; right: 20%; width: 75px; }
 .ing-basic-2 { top: 45%; right: 22%; width: 65px; }
 .ing-basic-3 { top: 28%; right: 8%; width: 85px; }

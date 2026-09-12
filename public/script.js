@@ -2,14 +2,36 @@ const MEDIA_BASE_BASE = 'https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/obj
 const API_BASE = '';
 
 const CART_LABELS = {
-    ru: { total: "Итого", clear: "Очистить", finalLabel: "Итоговая стоимость", expand: "Раскрыть", collapse: "Скрыть" },
-    en: { total: "Total", clear: "Clear", finalLabel: "Total cost", expand: "Expand", collapse: "Collapse" },
-    vn: { total: "Tổng", clear: "Xóa", finalLabel: "Tổng chi phí", expand: "Mở", collapse: "Đóng" }
+    ru: {
+        total: "Итого",
+        clear: "Очистить",
+        finalLabel: "Итоговая стоимость",
+        expand: "Раскрыть",
+        collapse: "Скрыть",
+        note: "Мы пока не умеем оформлять заказы, но корзину можно использовать чтобы не забыть что вы хотите заказать"
+    },
+    en: {
+        total: "Total",
+        clear: "Clear",
+        finalLabel: "Total cost",
+        expand: "Expand",
+        collapse: "Collapse",
+        note: "We don't support ordering yet, but you can use the cart as a reminder of what you'd like to order"
+    },
+    vn: {
+        total: "Tổng",
+        clear: "Xóa",
+        finalLabel: "Tổng chi phí",
+        expand: "Mở",
+        collapse: "Đóng",
+        note: "Chúng tôi chưa hỗ trợ đặt hàng, nhưng bạn có thể dùng giỏ hàng để ghi nhớ món muốn gọi"
+    }
 };
 
 const CART_MAX_ITEMS = 50;
 const CART_MAX_COUNT = 100;
 const CART_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
+const CART_TOAST_DURATION_MS = 4000;
 
 let categoryColorMap = {};
 let currentSlug = '';
@@ -199,6 +221,13 @@ function addToCart(itemId) {
     const current = cartState.items[itemId] || 0;
     if (current >= CART_MAX_COUNT) return;
 
+    // Показ тоста — только при первом "+" за сессию, если корзина была пуста
+    const wasEmpty = getCartCount() === 0;
+    if (wasEmpty && !sessionStorage.getItem('venuekit_cart_hint_shown')) {
+        sessionStorage.setItem('venuekit_cart_hint_shown', '1');
+        showCartToast();
+    }
+
     cartState.items[itemId] = current + 1;
     saveCart(currentSlug, cartState);
 
@@ -268,11 +297,13 @@ function renderCartSummary() {
     const finalLabelEl = document.getElementById('cart-final-label');
     const clearBtn = document.getElementById('cart-clear');
     const toggleTextEl = document.getElementById('cart-toggle-text');
+    const noteEl = document.getElementById('cart-note');
 
     const labels = CART_LABELS[currentLang] || CART_LABELS.ru;
     if (labelEl) labelEl.textContent = labels.total;
     if (finalLabelEl) finalLabelEl.textContent = labels.finalLabel;
     if (clearBtn) clearBtn.textContent = labels.clear;
+    if (noteEl) noteEl.textContent = labels.note;
 
     if (toggleTextEl) {
         const isExpanded = summary.classList.contains('expanded');
@@ -348,6 +379,22 @@ function toggleCartSummary() {
             ? labels.collapse
             : labels.expand;
     }
+}
+
+/* ========== КОРЗИНА: тост-подсказка ========== */
+
+function showCartToast() {
+    const toast = document.getElementById('cart-toast');
+    if (!toast) return;
+
+    const labels = CART_LABELS[currentLang] || CART_LABELS.ru;
+    toast.textContent = labels.note;
+
+    toast.classList.add('show');
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, CART_TOAST_DURATION_MS);
 }
 
 /* ========== НАВИГАЦИЯ ========== */
