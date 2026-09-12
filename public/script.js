@@ -105,14 +105,13 @@ function buildNav(menu) {
 }
 
 function initNavObserver() {
-    const sections = document.querySelectorAll('.category-section');
-    const links = document.querySelectorAll('.nav-link');
-
-    if (!sections.length || !links.length) return;
-
     function updateActive() {
-        const scrollPos = window.scrollY + 160;
+        const sections = document.querySelectorAll('.category-section');
+        const links = document.querySelectorAll('.nav-link');
 
+        if (!sections.length || !links.length) return;
+
+        const scrollPos = window.scrollY + 160;
         let activeId = sections[0]?.id;
 
         sections.forEach(section => {
