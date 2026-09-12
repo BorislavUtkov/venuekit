@@ -484,13 +484,13 @@ body.cart-active .content {
 /* Кнопка «вверх» */
 .scroll-top {
     position: fixed;
-    bottom: 20px;
+    top: 140px;
     right: 20px;
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(11, 61, 32, 0.85);
-    color: #fff;
+    background: rgba(11, 61, 32, 0.35);
+    color: rgba(255, 255, 255, 0.85);
     border: none;
     font-size: 22px;
     line-height: 1;
@@ -498,8 +498,8 @@ body.cart-active .content {
     z-index: 900;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: opacity 0.3s ease, background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .scroll-top.visible {
@@ -508,7 +508,9 @@ body.cart-active .content {
 }
 
 .scroll-top:hover {
-    transform: translateY(-3px);
+    background: rgba(11, 61, 32, 0.6);
+    color: #fff;
+    transform: translateY(-2px);
 }
 
 @media (min-width: 480px) {
