@@ -567,7 +567,8 @@ body.cart-active .content {
 }
 
 .cart-summary-icon {
-    font-size: 14px;
+    font-size: 28px;
+    line-height: 1;
     transition: transform 0.3s ease;
     display: inline-block;
 }
