@@ -1,10 +1,16 @@
-const MEDIA_BASE = 'https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/REU/';
+const MEDIA_BASE_BASE = 'https://vmzgchqxuyibqxltkigu.supabase.co/storage/v1/object/public/venue-media/';
 const API_BASE = '';
 
 let categoryColorMap = {};
+let currentSlug = '';
+let MEDIA_BASE = '';
 
 function getCurrentSlug() {
     return new URLSearchParams(window.location.search).get('slug');
+}
+
+function getMediaBase(slug) {
+    return `${MEDIA_BASE_BASE}${slug}/`;
 }
 
 function loadVenueCss(slug) {
@@ -24,6 +30,14 @@ function loadVenueConfig(slug) {
             if (window.VENUE_CONFIG && window.VENUE_CONFIG.categoryColorMap) {
                 categoryColorMap = window.VENUE_CONFIG.categoryColorMap;
             }
+
+            // Футер
+            if (window.VENUE_CONFIG && window.VENUE_CONFIG.footer_text) {
+                const footer = document.getElementById('venue-footer');
+                footer.innerHTML = window.VENUE_CONFIG.footer_text;
+                footer.hidden = false;
+            }
+
             resolve();
         };
         script.onerror = () => resolve();
@@ -34,11 +48,37 @@ function loadVenueConfig(slug) {
 function setImageSources(container = document) {
     container.querySelectorAll('img[data-src]').forEach(img => {
         img.src = MEDIA_BASE + img.getAttribute('data-src');
+        img.removeAttribute('data-src');
     });
 }
 
 function formatPrice(price) {
     return (price / 1000).toFixed(0).replace(/\.0$/, '') + 'K';
+}
+
+function showSkeleton() {
+    const skeleton = document.getElementById('menu-skeleton');
+    const error = document.getElementById('menu-error');
+    if (skeleton) skeleton.style.display = 'block';
+    if (error) error.style.display = 'none';
+}
+
+function hideSkeleton() {
+    const skeleton = document.getElementById('menu-skeleton');
+    if (skeleton) skeleton.style.display = 'none';
+}
+
+function showError(message) {
+    hideSkeleton();
+    const error = document.getElementById('menu-error');
+    const errorMessage = document.getElementById('error-message');
+    if (errorMessage) errorMessage.textContent = message;
+    if (error) error.style.display = 'block';
+}
+
+function hideError() {
+    const error = document.getElementById('menu-error');
+    if (error) error.style.display = 'none';
 }
 
 function buildNav(menu) {
@@ -51,6 +91,7 @@ function buildNav(menu) {
         link.className = 'nav-link' + (index === 0 ? ' active' : '');
         link.textContent = category.toUpperCase();
         link.dataset.color = categoryColorMap[category] || '#3E751D';
+        link.dataset.category = category.toLowerCase();
         nav.appendChild(link);
     });
 
@@ -78,6 +119,40 @@ function buildNav(menu) {
 
     const first = nav.querySelector('.nav-link.active');
     if (first) setActiveLink(first);
+
+    initNavObserver();
+}
+
+function initNavObserver() {
+    const sections = document.querySelectorAll('.category-section');
+    const links = document.querySelectorAll('.nav-link');
+
+    if (!sections.length || !links.length) return;
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                links.forEach(link => {
+                    link.classList.remove('active');
+                    link.style.color = '';
+                    link.style.borderColor = 'transparent';
+
+                    if (link.dataset.category === id) {
+                        link.classList.add('active');
+                        const color = link.dataset.color;
+                        link.style.color = color;
+                        link.style.borderColor = color;
+                    }
+                });
+            }
+        });
+    }, {
+        rootMargin: '-140px 0px -60% 0px',
+        threshold: 0
+    });
+
+    sections.forEach(section => observer.observe(section));
 }
 
 function buildSections(menu) {
@@ -99,19 +174,22 @@ function buildSections(menu) {
 
         const prevBtn = document.createElement('button');
         prevBtn.className = 'carousel-btn prev-btn';
+        prevBtn.type = 'button';
+        prevBtn.setAttribute('aria-label', 'Предыдущее блюдо');
         prevBtn.innerHTML = '&#10092;';
 
         const slidesWrapper = document.createElement('div');
         slidesWrapper.className = 'carousel-slides';
 
         items.forEach((item, index) => {
-            const card = document.createElement('div');
+            const card = document.createElement('article');
             card.className = 'drink-card' + (index === 0 ? ' active' : '');
+            card.dataset.itemId = item.id || '';
 
             const bgSrc = item.cardBgUrl || '';
             const drinkSrc = item.photoUrl || '';
             const ingredientsHtml = (item.ingredients || []).map(ing => {
-                return `<img data-src="${ing.imageUrl}" alt="" class="ingredient ${ing.cssClass}">`;
+                return `<img data-src="${ing.imageUrl}" alt="" class="ingredient ${ing.cssClass || ''}">`;
             }).join('');
 
             card.innerHTML = `
@@ -129,11 +207,33 @@ function buildSections(menu) {
 
         const nextBtn = document.createElement('button');
         nextBtn.className = 'carousel-btn next-btn';
+        nextBtn.type = 'button';
+        nextBtn.setAttribute('aria-label', 'Следующее блюдо');
         nextBtn.innerHTML = '&#10093;';
 
         carousel.appendChild(prevBtn);
         carousel.appendChild(slidesWrapper);
         carousel.appendChild(nextBtn);
+
+        // Точки и счётчик
+        const dotsWrapper = document.createElement('div');
+        dotsWrapper.className = 'carousel-dots';
+
+        items.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+            dot.type = 'button';
+            dot.dataset.index = index;
+            dot.setAttribute('aria-label', `Блюдо ${index + 1}`);
+            dotsWrapper.appendChild(dot);
+        });
+
+        const counter = document.createElement('div');
+        counter.className = 'carousel-counter';
+        counter.textContent = `1 / ${items.length}`;
+
+        carousel.appendChild(dotsWrapper);
+        carousel.appendChild(counter);
 
         section.appendChild(title);
         section.appendChild(carousel);
@@ -149,23 +249,123 @@ function initCarousels() {
         const slides = container.querySelectorAll('.drink-card');
         const prevBtn = container.querySelector('.prev-btn');
         const nextBtn = container.querySelector('.next-btn');
+        const dots = container.querySelectorAll('.carousel-dot');
+        const counter = container.querySelector('.carousel-counter');
+        const slidesWrapper = container.querySelector('.carousel-slides');
+
+        if (!slides.length) return;
+
         let currentIndex = 0;
 
-        function showSlide(index) {
+        function updateUI() {
             slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (i === index) slide.classList.add('active');
+                slide.classList.toggle('active', i === currentIndex);
             });
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+
+            if (counter) {
+                counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+            }
+        }
+
+        function showSlide(index) {
+            currentIndex = (index + slides.length) % slides.length;
+            updateUI();
         }
 
         nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            showSlide(currentIndex);
+            showSlide(currentIndex + 1);
         });
 
         prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            showSlide(currentIndex);
+            showSlide(currentIndex - 1);
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showSlide(Number(dot.dataset.index));
+            });
+        });
+
+        // Свайп
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isSwiping = false;
+
+        slidesWrapper.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            isSwiping = false;
+        }, { passive: true });
+
+        slidesWrapper.addEventListener('touchmove', e => {
+            if (!touchStartX) return;
+
+            const dx = e.touches[0].clientX - touchStartX;
+            const dy = e.touches[0].clientY - touchStartY;
+
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+                isSwiping = true;
+            }
+        }, { passive: true });
+
+        slidesWrapper.addEventListener('touchend', e => {
+            if (!isSwiping) {
+                touchStartX = 0;
+                return;
+            }
+
+            const dx = e.changedTouches[0].clientX - touchStartX;
+
+            if (Math.abs(dx) > 50) {
+                if (dx < 0) {
+                    showSlide(currentIndex + 1);
+                } else {
+                    showSlide(currentIndex - 1);
+                }
+            }
+
+            touchStartX = 0;
+            isSwiping = false;
+        });
+    });
+}
+
+function initScrollTop() {
+    const btn = document.getElementById('scroll-top');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+function initRetry() {
+    const retry = document.getElementById('error-retry');
+    if (!retry) return;
+
+    retry.addEventListener('click', () => {
+        loadMenu();
+    });
+}
+
+function initLangSwitchers() {
+    const langSwitchers = document.querySelectorAll('.lang');
+    langSwitchers.forEach(lang => {
+        lang.addEventListener('click', () => {
+            langSwitchers.forEach(l => l.classList.remove('active'));
+            lang.classList.add('active');
         });
     });
 }
@@ -174,9 +374,22 @@ async function loadMenu() {
     const slug = getCurrentSlug();
 
     if (!slug) {
-        const content = document.getElementById('menu-content');
-        content.innerHTML = `<p style="text-align:center;padding:40px;">Укажите slug заведения</p>`;
+        hideSkeleton();
+        showError('Укажите slug заведения');
         return;
+    }
+
+    currentSlug = slug;
+    MEDIA_BASE = getMediaBase(slug);
+
+    showSkeleton();
+    hideError();
+
+    // Логотип — грузим сразу, до запроса API
+    const logo = document.querySelector('img[data-src="logo.png"]');
+    if (logo) {
+        logo.src = MEDIA_BASE + 'logo.png';
+        logo.removeAttribute('data-src');
     }
 
     loadVenueCss(slug);
@@ -197,22 +410,17 @@ async function loadMenu() {
             document.head.appendChild(style);
         }
 
+        hideSkeleton();
         buildNav(data.menu);
         buildSections(data.menu);
     } catch (error) {
-        const content = document.getElementById('menu-content');
-        content.innerHTML = `<p style="text-align:center;padding:40px;">${error.message}</p>`;
+        showError(error.message || 'Ошибка загрузки меню');
     }
 }
 
-const langSwitchers = document.querySelectorAll('.lang');
-langSwitchers.forEach(lang => {
-    lang.addEventListener('click', () => {
-        langSwitchers.forEach(l => l.classList.remove('active'));
-        lang.classList.add('active');
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    initLangSwitchers();
+    initScrollTop();
+    initRetry();
+    loadMenu();
 });
-
-document.documentElement.style.scrollBehavior = 'smooth';
-
-loadMenu();

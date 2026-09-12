@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#f7f4ee">
+    <meta name="description" content="Меню заведения">
     <title>Меню</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,26 +16,53 @@
 </head>
 
 <body>
-    <div class="site-background"></div>
+    <div class="site-background" aria-hidden="true"></div>
 
     <header class="fixed-header">
         <div class="header-top">
             <img data-src="logo.png" alt="Logo" class="logo">
             <h1 class="main-title">МЕНЮ</h1>
-            <div class="lang-switch">
+            <nav class="lang-switch" aria-label="Выбор языка">
                 <span class="lang active">RU</span>
                 <span class="lang">EN</span>
-            </div>
+            </nav>
         </div>
 
-        <nav class="categories-nav" id="categories-nav">
+        <nav class="categories-nav" id="categories-nav" aria-label="Категории меню">
             <!-- Навигация будет построена из API -->
         </nav>
     </header>
 
-    <main class="content" id="menu-content">
+    <main class="content" id="menu-content" aria-live="polite">
+        <!-- Скелетон загрузки -->
+        <div class="skeleton" id="menu-skeleton">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+        </div>
+
+        <!-- Заглушка ошибки -->
+        <div class="error-state" id="menu-error" style="display:none;">
+            <p class="error-message" id="error-message">Не удалось загрузить меню</p>
+            <button class="error-retry" id="error-retry" type="button">Попробовать снова</button>
+        </div>
+
         <!-- Секции будут построены из API -->
     </main>
+
+    <footer class="app-footer" id="venue-footer" hidden></footer>
+
+    <!-- Модальные окна -->
+    <div class="modal" id="item-modal" aria-hidden="true" role="dialog">
+        <div class="modal-backdrop" data-close></div>
+        <div class="modal-content">
+            <button class="modal-close" data-close aria-label="Закрыть" type="button">×</button>
+            <div class="modal-body" id="item-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Кнопка «вверх» -->
+    <button class="scroll-top" id="scroll-top" aria-label="Наверх" type="button">↑</button>
 
     <script src="script.js"></script>
 </body>

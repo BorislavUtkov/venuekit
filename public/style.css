@@ -255,6 +255,202 @@ body {
     right: 10px;
 }
 
+/* Точки-индикаторы карусели */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    border: none;
+    padding: 0;
+}
+
+.carousel-dot.active {
+    background: #ffffff;
+    transform: scale(1.3);
+}
+
+/* Счётчик карусели */
+.carousel-counter {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 6px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    letter-spacing: 1px;
+}
+
+/* Скелетон загрузки */
+.skeleton {
+    padding: 30px 15px;
+}
+
+.skeleton-title {
+    width: 60%;
+    height: 34px;
+    margin: 0 auto 20px;
+    background: linear-gradient(90deg, #e0ddd5 25%, #f0ede5 50%, #e0ddd5 75%);
+    background-size: 200% 100%;
+    animation: skeleton-shine 1.5s infinite;
+    border-radius: 4px;
+}
+
+.skeleton-card {
+    width: 100%;
+    max-width: 380px;
+    height: 480px;
+    margin: 0 auto 20px;
+    background: linear-gradient(90deg, #e0ddd5 25%, #f0ede5 50%, #e0ddd5 75%);
+    background-size: 200% 100%;
+    animation: skeleton-shine 1.5s infinite;
+    border-radius: 8px;
+}
+
+@keyframes skeleton-shine {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Заглушка ошибки */
+.error-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.error-message {
+    font-size: 16px;
+    color: #8a3b3b;
+    margin-bottom: 20px;
+}
+
+.error-retry {
+    padding: 10px 24px;
+    font-size: 15px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: #0b3d20;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.error-retry:hover {
+    background: #14532b;
+}
+
+/* Футер */
+.app-footer {
+    padding: 20px 15px 30px;
+    text-align: center;
+    font-size: 14px;
+    color: #1a3c22;
+}
+
+/* Модальное окно */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal[aria-hidden="false"] {
+    display: flex;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    z-index: 1;
+    padding: 20px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    color: #333;
+    padding: 4px 8px;
+}
+
+.modal-close:hover {
+    color: #000;
+}
+
+/* Кнопка вверх */
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(11, 61, 32, 0.85);
+    color: #fff;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 900;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.scroll-top:hover {
+    transform: translateY(-3px);
+}
+
+@media (min-width: 480px) {
+    .scroll-top {
+        right: calc(50% - 240px + 20px);
+    }
+}
+
 .ing-basic-1 { top: 12%; right: 20%; width: 75px; }
 .ing-basic-2 { top: 45%; right: 22%; width: 65px; }
 .ing-basic-3 { top: 28%; right: 8%; width: 85px; }
